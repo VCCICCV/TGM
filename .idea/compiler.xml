@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="tgm-pay-interfaces" />
+        <module name="tgm-pay" />
+        <module name="tgm-pay-application" />
+        <module name="tgm" />
+        <module name="tgm-pay-domain" />
+        <module name="tgm-pay-infrastructure" />
+        <module name="tgm-gateway" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="tgm" options="-parameters" />
+      <module name="tgm-gateway" options="-parameters" />
+      <module name="tgm-pay" options="-parameters" />
+      <module name="tgm-pay-application" options="-parameters" />
+      <module name="tgm-pay-domain" options="-parameters" />
+      <module name="tgm-pay-infrastructure" options="-parameters" />
+      <module name="tgm-pay-interfaces" options="-parameters" />
+    </option>
+  </component>
+</project>
