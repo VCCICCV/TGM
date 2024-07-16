@@ -9,8 +9,11 @@
         <module name="tgm-pay-interfaces" />
         <module name="tgm-pay" />
         <module name="tgm-pay-application" />
-        <module name="tgm" />
+        <module name="tgm-marketing-interfaces" />
+        <module name="tgm-marketing" />
         <module name="tgm-pay-domain" />
+        <module name="tgm-marketing-domain" />
+        <module name="tgm-marketing-application" />
         <module name="tgm-pay-infrastructure" />
         <module name="tgm-gateway" />
       </profile>
@@ -18,8 +21,12 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="tgm" options="-parameters" />
+      <module name="tgm" options="" />
       <module name="tgm-gateway" options="-parameters" />
+      <module name="tgm-marketing" options="-parameters" />
+      <module name="tgm-marketing-application" options="-parameters" />
+      <module name="tgm-marketing-domain" options="-parameters" />
+      <module name="tgm-marketing-interfaces" options="-parameters" />
       <module name="tgm-pay" options="-parameters" />
       <module name="tgm-pay-application" options="-parameters" />
       <module name="tgm-pay-domain" options="-parameters" />
