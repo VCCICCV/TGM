@@ -16,6 +16,10 @@
         <option value="$PROJECT_DIR$/tgm-pay/tgm-pay-infrastructure/pom.xml" />
         <option value="$PROJECT_DIR$/tgm-pay/tgm-pay-domain/pom.xml" />
         <option value="$PROJECT_DIR$/tgm-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/tgm-marketing/pom.xml" />
+        <option value="$PROJECT_DIR$/tgm-marketing/tgm-marketing-domain/pom.xml" />
+        <option value="$PROJECT_DIR$/tgm-marketing/tgm-marketing-interfaces/pom.xml" />
+        <option value="$PROJECT_DIR$/tgm-marketing/tgm-marketing-application/pom.xml" />
       </list>
     </option>
   </component>
