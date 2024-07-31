@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: tgm-marketing-app
+  config:
+    profiles:
+      active: dev

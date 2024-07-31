@@ -7,16 +7,15 @@
     <file url="file://$PROJECT_DIR$/tgm-gateway/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tgm-marketing/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tgm-marketing/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tgm-marketing/tgm-marketing-application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tgm-marketing/tgm-marketing-app/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tgm-marketing/tgm-marketing-app/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tgm-marketing/tgm-marketing-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tgm-marketing/tgm-marketing-domain/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tgm-marketing/tgm-marketing-interfaces/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tgm-pay/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tgm-pay/tgm-pay-application/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tgm-pay/tgm-pay-application/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tgm-pay/tgm-pay-domain/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tgm-pay/tgm-pay-infrastructure/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tgm-pay/tgm-pay-interfaces/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tgm-pay/tgm-pay-interfaces/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tgm-marketing/tgm-marketing-infrastructure/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tgm-marketing/tgm-marketing-infrastructure/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tgm-marketing/tgm-marketing-trigger/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tgm-marketing/tgm-marketing-trigger/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tgm-marketing/tgm-marketing-types/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tgm-marketing/tgm-marketing-types/src/main/resources" charset="UTF-8" />
   </component>
 </project>

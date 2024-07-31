@@ -2,36 +2,18 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="tgm-pay-interfaces" />
-        <module name="tgm-pay" />
-        <module name="tgm-pay-application" />
-        <module name="tgm-marketing-interfaces" />
-        <module name="tgm-marketing" />
-        <module name="tgm-pay-domain" />
         <module name="tgm-marketing-domain" />
-        <module name="tgm-marketing-application" />
-        <module name="tgm-pay-infrastructure" />
+        <module name="tgm-marketing-trigger" />
         <module name="tgm-gateway" />
+        <module name="tgm-marketing-app" />
+        <module name="tgm-marketing-infrastructure" />
+        <module name="tgm-marketing-types" />
       </profile>
     </annotationProcessing>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="tgm" options="" />
-      <module name="tgm-gateway" options="-parameters" />
-      <module name="tgm-marketing" options="-parameters" />
-      <module name="tgm-marketing-application" options="-parameters" />
-      <module name="tgm-marketing-domain" options="-parameters" />
-      <module name="tgm-marketing-interfaces" options="-parameters" />
-      <module name="tgm-pay" options="-parameters" />
-      <module name="tgm-pay-application" options="-parameters" />
-      <module name="tgm-pay-domain" options="-parameters" />
-      <module name="tgm-pay-infrastructure" options="-parameters" />
-      <module name="tgm-pay-interfaces" options="-parameters" />
-    </option>
   </component>
 </project>
