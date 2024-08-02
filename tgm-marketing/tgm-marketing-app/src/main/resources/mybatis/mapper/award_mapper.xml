@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tgm.marketing.infrastructure.persistent.dao.IAwardDao">
-
     <resultMap id="dataMap" type="com.tgm.marketing.infrastructure.persistent.po.Award">
         <id column="id" property="id"/>
         <result column="award_id" property="awardId"/>

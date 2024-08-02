@@ -14,13 +14,12 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
-            <version>4.1.5</version>
-            <!--<exclusions>-->
-            <!--    <exclusion>-->
-            <!--        <groupId>org.springframework.boot</groupId>-->
-            <!--        <artifactId>spring-boot-starter-web</artifactId>-->
-            <!--    </exclusion>-->
-            <!--</exclusions>-->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
     </dependencies>

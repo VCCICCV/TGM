@@ -5,14 +5,8 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.util.Date;
 
-/**
- * @author Fuzhengwei bugstack.cn @小傅哥
- * @description 抽奖策略奖品明细配置 - 概率、规则
- * @create 2023-12-16 13:14
- */
 @Data
 public class StrategyAward {
-
     /** 自增ID */
     private Long id;
     /** 抽奖策略ID */
@@ -37,5 +31,4 @@ public class StrategyAward {
     private Date createTime;
     /** 修改时间 */
     private Date updateTime;
-
 }

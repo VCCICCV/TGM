@@ -8,7 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
-
+    <version>0.0.1-SNAPSHOT</version>
     <artifactId>tgm-marketing-app</artifactId>
 
     <dependencies>
@@ -24,19 +24,63 @@
         </dependency>
         <!--mybatis-->
         <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tgm</groupId>
+            <artifactId>tgm-marketing-infrastructure</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!--fastjson2-->
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
         </dependency>
 
     </dependencies>
 
     <!--<build>-->
+    <!--    <finalName>tgm-marketing-app</finalName>-->
+    <!--    <resources>-->
+    <!--        <resource>-->
+    <!--            <directory>src/main/resources</directory>-->
+    <!--            <filtering>true</filtering>-->
+    <!--            <includes>-->
+    <!--                <include>**/**</include>-->
+    <!--            </includes>-->
+    <!--        </resource>-->
+    <!--    </resources>-->
+    <!--    <testResources>-->
+    <!--        <testResource>-->
+    <!--            <directory>src/test/resources</directory>-->
+    <!--            <filtering>true</filtering>-->
+    <!--            <includes>-->
+    <!--                <include>**/**</include>-->
+    <!--            </includes>-->
+    <!--        </testResource>-->
+    <!--    </testResources>-->
     <!--    <plugins>-->
+    <!--        <plugin>-->
+    <!--            <groupId>org.apache.maven.plugins</groupId>-->
+    <!--            <artifactId>maven-surefire-plugin</artifactId>-->
+    <!--            <configuration>-->
+    <!--                <skipTests>true</skipTests>-->
+    <!--                <testFailureIgnore>false</testFailureIgnore>-->
+    <!--                <includes>-->
+    <!--                    <include>**/*Test.java</include>-->
+    <!--                </includes>-->
+    <!--            </configuration>-->
+    <!--        </plugin>-->
     <!--        <plugin>-->
     <!--            <groupId>org.springframework.boot</groupId>-->
     <!--            <artifactId>spring-boot-maven-plugin</artifactId>-->
+    <!--            <configuration>-->
+    <!--                <mainClass>cn.tgm.marketing.TgmMarketingAppApplication</mainClass>-->
+    <!--                <layout>JAR</layout>-->
+    <!--            </configuration>-->
     <!--        </plugin>-->
     <!--    </plugins>-->
     <!--</build>-->
-
 </project>

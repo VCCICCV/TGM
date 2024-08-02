@@ -4,14 +4,8 @@ import lombok.Data;
 
 import java.util.Date;
 
-/**
- * @author Fuzhengwei bugstack.cn @小傅哥
- * @description 奖品表
- * @create 2023-12-16 13:21
- */
 @Data
 public class Award {
-
     /** 自增ID */
     private Long id;
     /** 抽奖奖品ID - 内部流转使用 */
@@ -26,5 +20,4 @@ public class Award {
     private Date createTime;
     /** 更新时间 */
     private Date updateTime;
-
 }

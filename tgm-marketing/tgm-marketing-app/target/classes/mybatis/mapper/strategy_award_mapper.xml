@@ -30,18 +30,18 @@
         order by sort asc
     </select>
 
-    <select id="queryStrategyAwardRuleModels" parameterType="cn.bugstack.infrastructure.persistent.po.StrategyAward" resultType="java.lang.String">
+    <select id="queryStrategyAwardRuleModels" parameterType="com.tgm.marketing.infrastructure.persistent.po.StrategyAward" resultType="java.lang.String">
         select rule_models from strategy_award
         where strategy_id = #{strategyId} and award_id = #{awardId}
     </select>
 
-    <update id="updateStrategyAwardStock" parameterType="cn.bugstack.infrastructure.persistent.po.StrategyAward">
+    <update id="updateStrategyAwardStock" parameterType="com.tgm.marketing.infrastructure.persistent.po.StrategyAward">
         update strategy_award
         set award_count_surplus = award_count_surplus - 1
         where strategy_id = #{strategyId} and award_id = #{awardId} and award_count_surplus > 0
     </update>
 
-    <select id="queryStrategyAward" parameterType="cn.bugstack.infrastructure.persistent.po.StrategyAward" resultMap="dataMap">
+    <select id="queryStrategyAward" parameterType="com.tgm.marketing.infrastructure.persistent.po.StrategyAward" resultMap="dataMap">
         select strategy_id, award_id, award_title, award_subtitle, award_count, award_count_surplus, award_rate, rule_models, sort
         from strategy_award
         where strategy_id = #{strategyId} and award_id = #{awardId}

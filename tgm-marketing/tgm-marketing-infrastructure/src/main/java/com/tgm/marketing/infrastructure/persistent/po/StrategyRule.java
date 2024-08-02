@@ -4,11 +4,6 @@ import lombok.Data;
 
 import java.util.Date;
 
-/**
- * @author Fuzhengwei bugstack.cn @小傅哥
- * @description 策略规则
- * @create 2023-12-16 13:17
- */
 @Data
 public class StrategyRule {
 
