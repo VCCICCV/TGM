@@ -12,7 +12,18 @@
     <artifactId>tgm-marketing-domain</artifactId>
 
     <dependencies>
-
+        <!--lombok-->
+        <!--<dependency>-->
+        <!--    <groupId>org.projectlombok</groupId>-->
+        <!--    <artifactId>lombok</artifactId>-->
+        <!--    <scope>provided</scope>-->
+        <!--</dependency>-->
+        <!--types-->
+        <dependency>
+            <groupId>com.tgm</groupId>
+            <artifactId>tgm-marketing-types</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

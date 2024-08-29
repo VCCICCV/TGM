@@ -10,7 +10,34 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="AnnotationType" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -37,36 +64,63 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.AwardDaoTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AwardDaoTest.test_queryAwardList.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.tgm-all [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.tgm-all [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.tgm-marketing-app [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.tgm-marketing-infrastructure [install].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.TgmGatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.TgmMarketingAppApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Administrator/Desktop/ThreeGorgesMotor/tgm/tgm-marketing/tgm-marketing-infrastructure/src/main/java/com/tgm/marketing/infrastructure/persistent/po&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.6425287&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.ApiTest.executor": "Run",
+    "JUnit.ApiTest.test.executor": "Run",
+    "JUnit.AwardDaoTest.executor": "Run",
+    "JUnit.AwardDaoTest.test_queryAwardList.executor": "Run",
+    "JUnit.RaffleStrategyTest.executor": "Run",
+    "JUnit.RaffleStrategyTest.test_performRaffle.executor": "Run",
+    "JUnit.RaffleStrategyTest.test_performRaffle_blacklist.executor": "Run",
+    "JUnit.StrategyArmoryTest.executor": "Run",
+    "JUnit.StrategyArmoryTest.test_StrategyArmory.executor": "Run",
+    "JUnit.StrategyArmoryTest.test_getAssembleRandomVal.executor": "Debug",
+    "JUnit.StrategyArmoryTest.test_getRandomAwardId.executor": "Run",
+    "JUnit.StrategyArmoryTest.test_getRandomAwardId_ruleWeightValue.executor": "Run",
+    "Maven.tgm-all [clean].executor": "Run",
+    "Maven.tgm-all [install].executor": "Run",
+    "Maven.tgm-marketing-app [install].executor": "Run",
+    "Maven.tgm-marketing-domain [clean].executor": "Run",
+    "Maven.tgm-marketing-domain [install].executor": "Run",
+    "Maven.tgm-marketing-domain [package].executor": "Run",
+    "Maven.tgm-marketing-infrastructure [clean].executor": "Run",
+    "Maven.tgm-marketing-infrastructure [install].executor": "Run",
+    "Maven.tgm-marketing-infrastructure [package].executor": "Run",
+    "OverrideImplement.generate.javadoc": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "Spring Boot.TgmGatewayApplication.executor": "Run",
+    "Spring Boot.TgmMarketingAppApplication.executor": "Run",
+    "git-widget-placeholder": "develop",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Administrator/Desktop/ThreeGorgesMotor/tgm/tgm-marketing/tgm-marketing-infrastructure/src/main/java/com/tgm/marketing/infrastructure/persistent/po",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "模块",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.6425287",
+    "settings.editor.selected.configurable": "fileTemplates",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "GitStage.ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
+    ]
   }
-}</component>
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Administrator\Desktop\ThreeGorgesMotor\tgm\tgm-marketing\tgm-marketing-infrastructure\src\main\java\com\tgm\marketing\infrastructure\persistent\po" />
@@ -77,6 +131,7 @@
       <recent name="C:\Users\Administrator\Desktop\ThreeGorgesMotor\tgm\tgm-marketing\tgm-marketing-infrastructure\src\main\java\com\tgm\marketing\infrastructure\persistent\dao" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.tgm.marketing.test" />
       <recent name="com.tgm.marketing" />
       <recent name="com.tgm" />
     </key>
@@ -92,33 +147,81 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.AwardDaoTest">
-    <configuration name="AwardDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.RaffleStrategyTest.test_performRaffle_blacklist">
+    <configuration name="RaffleStrategyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="tgm-marketing-app" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.tgm.marketing.test.infrastructure.*" />
+          <option name="PATTERN" value="com.tgm.marketing.test.domain.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.tgm.marketing.test.infrastructure" />
-      <option name="MAIN_CLASS_NAME" value="com.tgm.marketing.test.infrastructure.AwardDaoTest" />
+      <option name="PACKAGE_NAME" value="com.tgm.marketing.test.domain" />
+      <option name="MAIN_CLASS_NAME" value="com.tgm.marketing.test.domain.RaffleStrategyTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AwardDaoTest.test_queryAwardList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RaffleStrategyTest.test_performRaffle" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="tgm-marketing-app" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.tgm.marketing.test.infrastructure.*" />
+          <option name="PATTERN" value="com.tgm.marketing.test.domain.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.tgm.marketing.test.infrastructure" />
-      <option name="MAIN_CLASS_NAME" value="com.tgm.marketing.test.infrastructure.AwardDaoTest" />
-      <option name="METHOD_NAME" value="test_queryAwardList" />
+      <option name="PACKAGE_NAME" value="com.tgm.marketing.test.domain" />
+      <option name="MAIN_CLASS_NAME" value="com.tgm.marketing.test.domain.RaffleStrategyTest" />
+      <option name="METHOD_NAME" value="test_performRaffle" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RaffleStrategyTest.test_performRaffle_blacklist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="tgm-marketing-app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tgm.marketing.test.domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.tgm.marketing.test.domain" />
+      <option name="MAIN_CLASS_NAME" value="com.tgm.marketing.test.domain.RaffleStrategyTest" />
+      <option name="METHOD_NAME" value="test_performRaffle_blacklist" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StrategyArmoryTest.test_getRandomAwardId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="tgm-marketing-app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tgm.marketing.test.domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.tgm.marketing.test.domain" />
+      <option name="MAIN_CLASS_NAME" value="com.tgm.marketing.test.domain.StrategyArmoryTest" />
+      <option name="METHOD_NAME" value="test_getRandomAwardId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StrategyArmoryTest.test_getRandomAwardId_ruleWeightValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="tgm-marketing-app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tgm.marketing.test.domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.tgm.marketing.test.domain" />
+      <option name="MAIN_CLASS_NAME" value="com.tgm.marketing.test.domain.StrategyArmoryTest" />
+      <option name="METHOD_NAME" value="test_getRandomAwardId_ruleWeightValue" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -139,15 +242,21 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.AwardDaoTest" />
-      <item itemvalue="JUnit.AwardDaoTest.test_queryAwardList" />
+      <item itemvalue="JUnit.RaffleStrategyTest" />
+      <item itemvalue="JUnit.RaffleStrategyTest.test_performRaffle" />
+      <item itemvalue="JUnit.RaffleStrategyTest.test_performRaffle_blacklist" />
+      <item itemvalue="JUnit.StrategyArmoryTest.test_getRandomAwardId_ruleWeightValue" />
+      <item itemvalue="JUnit.StrategyArmoryTest.test_getRandomAwardId" />
       <item itemvalue="Spring Boot.TgmMarketingAppApplication" />
       <item itemvalue="Spring Boot.TgmGatewayApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AwardDaoTest" />
-        <item itemvalue="JUnit.AwardDaoTest.test_queryAwardList" />
+        <item itemvalue="JUnit.RaffleStrategyTest.test_performRaffle_blacklist" />
+        <item itemvalue="JUnit.RaffleStrategyTest.test_performRaffle" />
+        <item itemvalue="JUnit.RaffleStrategyTest" />
+        <item itemvalue="JUnit.StrategyArmoryTest.test_getRandomAwardId" />
+        <item itemvalue="JUnit.StrategyArmoryTest.test_getRandomAwardId_ruleWeightValue" />
       </list>
     </recent_temporary>
   </component>
@@ -171,14 +280,53 @@
       <workItem from="1722549918272" duration="4407000" />
       <workItem from="1722554339328" duration="499000" />
       <workItem from="1722554851856" duration="1819000" />
-      <workItem from="1722556686331" duration="9681000" />
+      <workItem from="1722556686331" duration="19106000" />
+      <workItem from="1722702203535" duration="4025000" />
+      <workItem from="1722721511848" duration="11936000" />
+      <workItem from="1722823870608" duration="11759000" />
+      <workItem from="1722881082007" duration="10523000" />
+      <workItem from="1722894234754" duration="7354000" />
     </task>
+    <task id="LOCAL-00001" summary="存在测试bug">
+      <option name="closed" value="true" />
+      <created>1722895201123</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1722895201123</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="develop" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/main" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -189,7 +337,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="develop" />
                       </list>
                     </value>
                   </entry>
@@ -200,5 +348,29 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="存在测试bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="存在测试bug" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tgm-marketing/tgm-marketing-app/src/test/java/com/tgm/marketing/test/infrastructure/AwardDaoTest.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/tgm$StrategyArmoryTest_test_getAssembleRandomVal.ic" NAME="StrategyArmoryTest.test_getAssembleRandomVal 覆盖结果" MODIFIED="1722798122338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.tgm.marketing.test.domain.*</FILTER>
+    </SUITE>
   </component>
 </project>

@@ -1,10 +1,4 @@
-com\tgm\marketing\infrastructure\persistent\po\Award.class
-com\tgm\marketing\infrastructure\persistent\po\StrategyAward.class
-com\tgm\marketing\infrastructure\persistent\dao\IAwardDao.class
-com\tgm\marketing\infrastructure\persistent\dao\IStrategyAwardDao.class
 com\tgm\marketing\infrastructure\persistent\dao\IStrategyDao.class
-com\tgm\marketing\infrastructure\persistent\dao\IStrategyRuleDao.class
-com\tgm\marketing\infrastructure\persistent\dao\package-info.class
-com\tgm\marketing\infrastructure\persistent\po\package-info.class
-com\tgm\marketing\infrastructure\persistent\po\StrategyRule.class
+com\tgm\marketing\infrastructure\persistent\redis\RedissonService.class
+com\tgm\marketing\infrastructure\persistent\redis\IRedisService.class
 com\tgm\marketing\infrastructure\persistent\po\Strategy.class

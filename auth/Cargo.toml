@@ -1,0 +1,51 @@
+[package]
+name = "auth"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+members = [".", "adapter", "application", "domain", "infrastructure"]
+[dependencies]
+application = { path = "application" }
+# web框架
+axum = "0.7.5"
+# 提供了一些额外的功能，如处理特定类型的 HTTP 头
+axum-extra = { version = "0.9.3", features = ["typed-header"] }
+# session
+async-session = "3.0.0"
+# oauth2
+oauth2 = "4.1"
+# 错误处理
+anyhow = "1.0.86"
+# 提供了静态文件服务
+tower-http = { version = "0.5", features = ["fs"] }
+# cookie
+tower-cookies = "0.10"
+# 异步运行时
+tokio = { version = "1.39.3", features = ["full"] }
+# 序列化和反序列化数据
+serde = { version = "1.0.127", features = ["derive"] }
+# 序列化JSON
+serde_json = "1.0.82"
+# 序列化时间
+serde_with = "3.8.2"
+# HTTP客户端
+reqwest = { version = "0.12.7", default-features = false, features = [
+    "rustls-tls",
+    "json",
+] }
+# 定义了 HTTP 请求和响应的相关类型
+http = "1.0.0"
+# 日志
+tracing = "0.1"
+# 日志过滤器
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+# 正则表达式
+lazy-regex = "3"
+
+strum_macros = "0.26.4"
+uuid = { version = "1", features = ["v4", "fast-rng"] }
+
+[dev-dependencies]
+# 测试
+httpc-test = "0.1.1"

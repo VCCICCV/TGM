@@ -28,17 +28,24 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
 
+        <!--fastjson-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <!--fastjson2-->
+        <!--<dependency>-->
+        <!--    <groupId>com.alibaba.fastjson2</groupId>-->
+        <!--    <artifactId>fastjson2</artifactId>-->
+        <!--</dependency>-->
+
+
+        <!--infrastructure-->
         <dependency>
             <groupId>com.tgm</groupId>
             <artifactId>tgm-marketing-infrastructure</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <!--fastjson2-->
-        <dependency>
-            <groupId>com.alibaba.fastjson2</groupId>
-            <artifactId>fastjson2</artifactId>
-        </dependency>
-
     </dependencies>
 
     <!--<build>-->
