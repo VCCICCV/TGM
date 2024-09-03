@@ -18,7 +18,7 @@ export default function Home() {
 
           <CustomFilter />
         </div>
-        <Button color="primary">Click me</Button>
+
       </div>
 
     </main>

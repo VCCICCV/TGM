@@ -1,3 +1,4 @@
 .vscode/
 .idea/
 /auth/target/
+/tgm-front/node_modules/
