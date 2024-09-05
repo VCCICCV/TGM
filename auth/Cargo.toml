@@ -4,19 +4,22 @@ version = "0.1.0"
 edition = "2021"
 
 [workspace]
-members = [".", "adapter", "application", "domain", "infrastructure"]
+members = [".", "application", "domain", "infrastructure", "interface"]
 [dependencies]
 application = { path = "application" }
+# migration ={ path = "migration" }
 # web框架
 axum = "0.7.5"
 # 提供了一些额外的功能，如处理特定类型的 HTTP 头
 axum-extra = { version = "0.9.3", features = ["typed-header"] }
+# orm
+# sea-orm = { version = "1.0.1", features = [ "sqlx-postgres", "runtime-tokio-rustls", "macros" ] }
 # session
 async-session = "3.0.0"
 # 读取toml文件
 toml = "0.8.19"
 # oauth2
-oauth2 = "4.1"
+# oauth2 = "4.1"
 # 错误处理
 anyhow = "1.0.86"
 # 提供了静态文件服务

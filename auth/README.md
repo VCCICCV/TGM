@@ -283,21 +283,24 @@ entity = { path = "../entity" }
 ## Axum DDD开发（整洁架构）
 
 * `domain`：领域层，包含您的所有实体、值对象和业务逻辑，相关且应一起改变的实体应分组为一个聚合，实体可以利用领域事件将变化传达给系统的其他部分，实体可以定义可用于查询它们的接口（interface，叫约定更合适）,对于可变访问，应该通过 Repository 接口访问实体
-  
   * interface：定义接口
-  * **services**：领域服务，实现接口（洋葱架构中叫Domain Model，Domain Services）
-  * **entities/model**：领域实体，封装整个系统的关键业务逻辑（能被其他部分复用的实体及业务逻辑），既可以是带有方法的对象，也可以是主句结构和函数集合
-  * value object：值对象
+  * **services**：领域服务，实现接口（洋葱架构中叫Domain Model，Domain Services），当业务逻辑不能自然地归属于某个实体时，可以创建领域服务
+  * **entities/model**：领域实体，代表业务领域核心概念的实体类，封装整个系统的关键业务逻辑（能被其他部分复用的实体及业务逻辑），既可以是带有方法的对象，也可以是主句结构和函数集合
+  * value object：不可变的值对象，如地址，值对象可以增强代码的可读性和可维护性，避免在多个地方重复相同的逻辑
+  * event：领域事件，如`OrderPlaced`（订单已下单）、`ProductUpdated`（商品已更新）
   * eceptions：错误
   * repository：只定义数据库操作接口，用于数据访问抽象
-  
 * `application`：应用层，该层控制整个应用程序流程，逻辑必须在此层范围内定义，这一层的变化既不影响业务实体，也不受数据库和框架的影响
-  * **use_case/service**：定义编排业务流程，用例通常按照 CQRS 分组为命令和查询（洋葱架构中叫Application Services）
+  * **use_case/service**：定义编排业务流程，组合实体的功能，用例通常按照 CQRS 分组为命令和查询（洋葱架构中叫Application Services）
   * validators：输入验证相关的类
   * repository：只定义数据库操作接口，用于数据访问抽象
-  
+  * interface_adapters：适配器层，作为基础设施层和应用层之间的桥梁，适配器层主要关注基础设施，将基础设施层提供的功能进行封装和适配，使其更符合业务逻辑的需求。访问和连接过程必须限制在此层中。向`infrastructure`提供接口而不是方法（这一层也可以放在`infrastructure`），还可以**用于**防腐，对外部 API 的返回结果进行适配，**用于**转换为系统内部使用的业务对象格式，处理消息的路由和分发，**用于**连接和访问外部中间件、服务或 API
+    * 
+    * BFF：为了前端的后端，为不同平台适配通信协议
+    * persistence_adapters：持久层适配器
+    * cache-adapter：对 Redis 的操作进行封装和适配，以满足`application`的需求
+    * messaging-adapter：对消息队列的操作进行封装和适配，以满足应用层的需求
 * `infrastructure`：基础设施层，数据库、文件、邮件、事件处理等相关代码，实现`use case`定义的接口，依赖于`domain`存在的接口。用于创建数据库连接工厂类，负责初始化数据库连接池，配置连接参数如数据库地址、用户名、密码，**用于**处理连接异常，如连接超时、连接失败等情况，提供重试机制或错误处理策略，**用于**处理事务管理，确保数据操作的原子性、一致性、隔离性和持久性，**用于**管理系统的运行环境配置，如开发环境、测试环境、生产环境的切换
-
   * `persistence`：持久层，数据库连接的初始化配置和管理代码，如Java中的DAO
     * mysql_repository_impl：数据库具体实现，使用orm就把连接和实现放一起
     * postgresql_repository_imp：数据库具体实现，使用orm就把连接和实现放一起
@@ -309,16 +312,13 @@ entity = { path = "../entity" }
   * file-storage：使用 Minio 的具体文件存储和检索逻辑
   * publisher：发布领域事件
 
-* `adapter`：适配器层，作为基础设施层和应用层之间的桥梁，适配器层主要关注基础设施，将基础设施层提供的功能进行封装和适配，使其更符合业务逻辑的需求。访问和连接过程必须限制在此层中。向`infrastructure`提供接口而不是方法（这一层也可以放在`infrastructure`），还可以**用于**防腐，对外部 API 的返回结果进行适配，**用于**转换为系统内部使用的业务对象格式，处理消息的路由和分发，**用于**连接和访问外部中间件、服务或 API
-
+* `Interface`：
   * `api/controller`：路由，如Java中的Controller
-  * BFF：为了前端的后端，为不同平台适配通信协议
-  * persistence_adapters：持久层适配器
-  * cache-adapter：对 Redis 的操作进行封装和适配，以满足`application`的需求
-  * messaging-adapter：对消息队列的操作进行封装和适配，以满足应用层的需求
 
 
-    * convertor：转换器，将DO领域对象转换为`persistence`最方便操作的格式
+
+convertor：转换器，将DO领域对象转换为`persistence`最方便操作的格式
+
 
 * 启动应用应该单独使用一个包或模块：例如`COLA`使用`start`，Rust项目中`src`，依赖于`adapter`
 
@@ -384,7 +384,7 @@ cargo new auth
 cargo new --lib domain
 cargo new --lib application
 cargo new --lib infrastructure
-cargo new --lib adapter
+cargo new --lib interface
 ```
 
 添加依赖
@@ -699,19 +699,6 @@ async fn main() {
 }
 ```
 
-
-
-使用`Router::with_state`嵌套路由和不同状态
-
-```
-```
-
-
-
-嵌套路由和后备路由
-
-
-
 ### merge 合并路由
 
 将多个独立的路由**组合**到一起统一处理，例如两个模块中定义了路由，在主应用中合并为一个路由
@@ -750,12 +737,6 @@ async fn main() {
     axum::serve(listener, app).await.unwrap();
 }
 ```
-
-合并路由和状态
-
- 
-
-合并路由和后背路由
 
 ## `tower_service::Service`服务路由
 
@@ -830,6 +811,111 @@ async fn main() {
        axum::serve(listener, app).await.unwrap();
 }
 ```
+
+## Axum整合sea-orm
+
+添加crate
+
+```toml
+sea-orm = { version = "1.0.1", features = [ "sqlx-postgres", "runtime-tokio-rustls", "macros" ] }
+```
+
+安装cli
+
+```bash
+cargo install sea-orm-cli
+```
+
+初始化，将会生成`migration`文件夹
+
+```bash
+sea-orm-cli migrate init
+```
+
+将`migration`添加到工作区，根目录`Cargo.toml`
+
+```toml
+[workspace]
+members = [".","migration"]
+```
+
+取消驱动的注释`migration\Cargo.toml`
+
+```toml
+[dependencies.sea-orm-migration]
+version = "1.0.0"
+features = [
+  # Enable at least one `ASYNC_RUNTIME` and `DATABASE_DRIVER` feature if you want to run migration via CLI.
+  # View the list of supported features at https://www.sea-ql.org/SeaORM/docs/install-and-config/database-and-async-runtime.
+  # e.g.
+  "runtime-tokio-rustls",  # `ASYNC_RUNTIME` feature
+  "sqlx-postgres",         # `DATABASE_DRIVER` feature
+]
+```
+
+将`crate_table.rs`的`Post`全部改为`User`
+
+添加或修改你需要的字段
+
+```rust
+#[derive(DeriveIden)]
+enum User {
+    Table,
+    Id,
+    Name,
+    Email,
+    Password,
+    Uuid,
+    CreatedAt,
+}
+```
+
+编写建表命令，所有类型和约束都已函数的方式添加
+
+> `todo!()`用于提示未完成的部分，使用`todo!()`会panic，迁移前请删除
+
+```rust
+    async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
+        // Replace the sample below with your own migration scripts
+        todo!();
+
+        manager
+            .create_table(
+                Table::create()
+                    .table(User::Table).if_not_exists()
+                    .col(pk_auto(User::Id))
+                    .col(Column::timestamp(User::Name).string().not_null())
+                    .col(Column::string(User::Email).string().unique_key().not_null())
+                    .col(Column::timestamp(User::Password).not_null())
+                    .col(Column::timestamp(User::Uuid).uuid().unique_key().not_null())
+                    .col(Column::timestamp(User::CreatedAt).data_time().not_null())
+                    .to_owned(),
+            )
+            .await
+    }
+```
+
+在根目录创建`.env`文件，添加以下内容，修改`username:password@host`
+
+```
+DATABASE_URL=postgres://username:password@host:5432/database
+# 例如
+DATABASE_URL=postgres://postgres:root123456@localhost:5432/postgres
+```
+
+迁移
+
+```
+sea-orm-cli migrate fresh
+```
+
+创建实体
+
+```
+sea-orm-cli generate entity -o entity/src
+```
+
+
 
 ## Error handling 错误处理
 

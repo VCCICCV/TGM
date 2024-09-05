@@ -1,3 +1,0 @@
-[env]
-# auth与cargo.toml的name一致
-RUST_LOG="auth=debug"
