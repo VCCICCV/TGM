@@ -1,283 +1,56 @@
-## Rust多模块
-
-前置知识
-
-* 包`package`：`cargo new`出来的根文件夹就是一个项目包
-  * 二进制箱子`binary crate`：`cargo new demo`
-    * 一个包可以有一个或多个`crate`
-    * `main.rs`是`crate root`
-  * 箱子库`library crate`：可以和`binary crate`放在同一个包内，也可以`cargo new --lib demo`一个单独的包
-    * 一个包只能有0-1个`crate`
-    * `lib.rs`是`crate root`
-* 工作空间`workspace`：多个项目联合在一起可以组成工作空间
-* 箱子`crate`：提供多个功能，相当于dll或者作为第三方依赖
-* 货物`cargo`：包管理工具，要用的第三方依赖就是箱子，功能就是里面的货物
-
-* 关键字`pub`：公开模块或方法，默认是私有的
-* 关键字`use`：导入模块到作用域，始终从`crate root`开始
-* 关键字`pub use`：导入当前作用域并公开模块或方法
-* 关键字`mod`：定义或导入模块
-* 关键字`super`：引用父模块，相当于`../`
-* 关键字`self`：引用自身模块，调用同一模块的内容
-* 关键字`crate`：引用同级模块
-
-## 1、 在Rust 1.30之前使用`mod.rs`来定义模块和嵌套子模块
-
-```rust
-cargo new demo
-```
-
-`src\util\bar.rs`
-
-```rust
-pub fn print_src_bar() {
-    println!("bar");
-}
-```
-
-`src\util\foo.rs`
-
-```rust
-pub fn print_src_foo() {
-    println!("foo");
-}
-```
-
-`src\util\mod.rs`在`mod.rs`定义的内容编译器会找同级目录的`bar.rs`或`bar\mod.rs`文件
-
-```rust
-// 公开模块识别crate
-pub mod bar;
-pub mod foo;
-```
-
-`main.rs`：crate root
-
-```rust
-mod util;
-
-use crate::util::{bar, foo};
-fn main() {
-    bar::print_src_bar();
-    foo::print_src_foo();
-}
-```
-
-模块树
-
-![image-20240827072042761](C:/Users/Administrator/Desktop/ThreeGorgesMotor/tgm/auth/README.assets/image-20240827072042761-1724717977035-1.png)
-
-执行`cargo run`成功调用方法
-
-````
-bar
-foo
-````
-
-也可以直接在`util\mod.rs`里编写方法，比如路由
-
-```rust
-pub mod bar;
-pub mod foo;
-// 公开模块才能识别到crate和方法
-pub mod routes{
-    pub fn routes(){
-        println!("routes");
-    }
-}
-```
-
-`main.rs`：crate root
-
-```rust
-mod util;
-use crate::util::{ bar, foo };
-use crate::util::routes::routes;
-fn main() {
-    bar::print_src_bar();
-    foo::print_src_foo();
-    routes();
-}
-```
-
-模块树
-
-![image-20240827082224381](C:/Users/Administrator/Desktop/ThreeGorgesMotor/tgm/auth/README.assets/image-20240827082224381.png)
-
-## 2、 在Rust 1.30之后，直接创建子模块，不需要`mod.rs`
-
-```rust
-cargo new demo
-```
-
-`src\util\bar.rs`
-
-```rust
-pub fn print_src_bar() {
-    println!("bar");
-}
-```
-
-`src\util\foo.rs`
-
-```rust
-pub fn print_src_foo() {
-    println!("foo");
-}
-```
-
-1. `main.rs`声明``crate`
-
-```rust
-mod util{
-    pub mod bar;
-    pub mod foo;
-}
-use util::bar;
-use util::foo;
-
-fn main() {
-    bar::print_src_bar();
-    foo::print_src_foo();
-    println!("main");
-}
-```
-
-执行`cargo run`成功调用方法
-
-```
-bar
-foo
-main
-```
-
-2. 使用`<folder_name>.rs`
-
-新建一个`src\util.rs`
-
-```rust
-pub mod bar;
-pub mod foo;
-```
-
-`main.rs`
-
-```rust
-mod util;
-use crate::util::bar;
-use crate::util::foo;
-fn main() {
-    bar::print_src_bar();
-    foo::print_src_foo();
-    println!("main");
-}
-```
-
-执行`cargo run`
-
-```
-bar
-foo
-main
-```
-
-模块树
-
-![image-20240827082425240](C:/Users/Administrator/Desktop/ThreeGorgesMotor/tgm/auth/README.assets/image-20240827082425240.png)
-
-## Rust多模块应用
-
-* 使用`[workspace]`使子模块依赖于一个`Cargo.toml`，共享一个`target`输出目录
-
-* 使用`cargo new --lib`新建子模块，在根目录`Cargo.toml`添加`[workspace]`来嵌套子模块
-
-创建父项目
-
-```rust
-cargo new demo
-```
-
-创建子模块
-
-```rust
-cargo new --lib application
-```
-
-`application\src\util\app_bar.rs`
-
-```rust
-pub fn print_app_bar() {
-    println!("app_bar");
-}
-```
-
-`application\src\util\app_foo.rs`
-
-```rust
-pub fn print_app_foo() {
-    println!("app_foo");
-}
-```
-
-`application\src\lib.rs`
-
-```rust
-pub mod util{
-    pub mod app_bar;
-    pub mod app_foo;
-}
-```
-
-如果有依赖要导入到当前模块中使用
-
-```rust
-// 在lib.rs添加
-pub use sea_orm_migration::prelude::*;
-// 在要使用的crate中添加
-use sea_orm_migration::prelude::*;
-```
-
-在父项目根目录的`Cargo.toml`添加
-
-```toml
-[workspace]
-members = [".","application"]
-[dependencies]
-application = {path = "application"}
-```
-
-`src\main.rs`
-
-```rust
-use application::util::app_bar;
-use application::util::app_foo;
-fn main() {
-    app_bar::print_app_bar();
-    app_foo::print_app_foo();
-    println!("main");
-}
-```
-
-执行`cargo run`
-
-```rust
-app_bar
-app_foo
-main
-```
-
-新建其他模块同样的套路，`cargo new --lib 模块名`，父项目的`Cargo.toml`会自动添加
-
-```toml
-[workspace]
-members = [".","application", "模块名"]
-```
-
-要使用哪个模块的方法就在哪个模块的`Cargo.toml`添加`[dependencies]`并指定路径`path`，比如实体定义在entity模块中，在`service`的`Cargo.toml`添加
 
 ```toml
 [dependencies]
-entity = { path = "../entity" }
+application = { path = "application" }
+# migration ={ path = "migration" }
+# web框架
+axum = "0.7.5"
+# 提供了一些额外的功能，如处理特定类型的 HTTP 头
+axum-extra = { version = "0.9.3", features = ["typed-header"] }
+# orm
+sea-orm = { version = "1.0.1", features = [ "sqlx-postgres", "runtime-tokio-rustls", "macros" ] }
+# session
+async-session = "3.0.0"
+# 读取toml文件
+toml = "0.8.19"
+# oauth2
+# oauth2 = "4.1"
+# 错误处理
+anyhow = "1.0.86"
+# 提供了静态文件服务
+tower-http = { version = "0.5", features = ["fs"] }
+# cookie
+tower-cookies = "0.10"
+# 异步运行时
+tokio = { version = "1.40.0", features = ["full"] }
+# 序列化和反序列化数据
+serde = { version = "1.0.127", features = ["derive"] }
+# 序列化JSON
+serde_json = "1.0.128"
+# 序列化时间
+serde_with = "3.8.2"
+# 分布式跟踪的 SDK，用于采集监控数据，这里用其日志功能
+tracing = "0.1.40"
+tracing-error = "0.2.0"
+# 日志过滤器
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+# 正则表达式
+lazy-regex = "3"
+
+strum_macros = "0.26.4"
+uuid = { version = "1", features = ["v4", "fast-rng"] }
+# 以声明式或程序式的方式创建命令行解析器
+clap = "4.5.17"
+# HTTP客户端
+reqwest = { version = "0.12.7", default-features = false, features = [
+    "rustls-tls",
+    "json",
+] }
+# 定义了 HTTP 请求和响应的相关类型
+http = "1.0.0"
+[dev-dependencies]
+# 测试
+httpc-test = "0.1.1"
 ```
 
 ## Axum DDD开发（整洁架构）
@@ -295,7 +68,7 @@ entity = { path = "../entity" }
   * validators：输入验证相关的类
   * repository：只定义数据库操作接口，用于数据访问抽象
   * interface_adapters：适配器层，作为基础设施层和应用层之间的桥梁，适配器层主要关注基础设施，将基础设施层提供的功能进行封装和适配，使其更符合业务逻辑的需求。访问和连接过程必须限制在此层中。向`infrastructure`提供接口而不是方法（这一层也可以放在`infrastructure`），还可以**用于**防腐，对外部 API 的返回结果进行适配，**用于**转换为系统内部使用的业务对象格式，处理消息的路由和分发，**用于**连接和访问外部中间件、服务或 API
-    * 
+    *
     * BFF：为了前端的后端，为不同平台适配通信协议
     * persistence_adapters：持久层适配器
     * cache-adapter：对 Redis 的操作进行封装和适配，以满足`application`的需求
@@ -315,16 +88,13 @@ entity = { path = "../entity" }
 * `Interface`：
   * `api/controller`：路由，如Java中的Controller
 
-
-
 convertor：转换器，将DO领域对象转换为`persistence`最方便操作的格式
-
 
 * 启动应用应该单独使用一个包或模块：例如`COLA`使用`start`，Rust项目中`src`，依赖于`adapter`
 
 * 父模块应该依赖于所有的包
 
-* 中间件：如果中间件的主要作用是对外部请求或响应进行预处理或后处理，以适配特定的外部系统或接口要求，那么可以将其放在 `adapter `层，如`adapter/middleware`；如果中间件主要是处理与技术实现相关的通用功能，比如日志记录、请求验证、错误处理等，可以将其放在 `infrastructure `层，如`infrastructure/middleware`
+* 中间件：如果中间件的主要作用是对外部请求或响应进行预处理或后处理，以适配特定的外部系统或接口要求，那么可以将其放在 `adapter`层，如`adapter/middleware`；如果中间件主要是处理与技术实现相关的通用功能，比如日志记录、请求验证、错误处理等，可以将其放在 `infrastructure`层，如`infrastructure/middleware`
 
 **其他目录**
 
@@ -401,353 +171,13 @@ serde = { version = "1.0.127", features = ["derive"] }
 anyhow = "1.0.86"
 ```
 
-`main.rs`
 
-```rust
-use axum::{
-    routing::get,
-    Router,
-};
-// 属性宏，将此函数标记为异步程序的入口点，启动一个异步运行时（Tokio 运行时）来执行这个异步函数
-#[tokio::main]
-async fn main() {
-    // 创建路由实例
-    let app = Router::new().route("/hello", get(|| async { "Hello, Axum!"}));
-    // 使用hyper监听所有地址的9090端口，.await等待异步完成，绑定成功返回TcpListener实例，失败panic并打印错误信息
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:8080").await.unwrap();
-    println!("->>LISTENING on {:?}",listener);
-    // 使用serve函数启动一个异步服务器，监听TcpListener实例，并使用app作为处理函数
-    axum::serve(listener, app).await.unwrap();
-}
-```
-
-使用`postman`请求`0.0.0.0:8080/hello`可以看到返回了数据
-
-```
-Hello, Axum!
-```
-
-> 0.0.0.0表示所有ipv4地址，但不能被ping通
->
-> 127.0.0.1表示回环地址。所有网络号为127的地址都是回环地址
-
-Rust项目源代码发生变化时自动运行 Cargo 命令
-
-```
-# 安装（关闭杀毒软件）
-cargo install cargo-watch
-```
-监听src/目录，更改代码自动重新执行`cargo run`
-
-```
-cargo watch -q -c -w src/ -x run
-```
-
-> 若要监听tests/目录，更改代码自动重新执行`cargo test -q test_dev -- --nocapture`测试并显示所有输出
-
-```
-cargo watch -q -c -w tests/ -x "test -q test_dev -- --nocapture"
-```
-
-## `axum::Router`路由
-
-
-闭包传递路由
-
-> 闭包可以捕获调用者作用域中的值
-
-```rust
-use axum::{
-    routing::get,
-    Router,
-    extract::Path,
-};
-// use tracing::info;
-#[tokio::main]
-async fn main() {
-
-    let app = Router::new()
-    .route("/", get(|| async { "Hello, Rust!" }))
-    .route("/hello", get(|| async { "Hello, World!" }))
-    .route("/tokio/:name", get(|name:Path<String>| async move{ format!("Hello,{:?}",name) }));
-
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await.unwrap();
-    axum::serve(listener, app).await.unwrap();
-}
-```
-
-还可以将路由函数提取出来，相同路由可以的不同处理可以通过`.`添加处理器并添加自定义方法，如`.get().post().patch().delete()`
-
-```rust
-use axum::{
-    routing::get,
-    Router,
-};
-use tokio::net::TcpListener;
-
-// 获取
-async fn get_handler() -> String {
-    "Hello, world!".to_string()
-}
-// 创建
-async fn post_handler() -> String {
-    "post".to_string()
-}
-// 更新
-async fn patch_handler() -> String {
-    "update".to_string()
-}
-// 删除
-async fn delete_handler() -> String {
-    "delete".to_string()
-}
-#[tokio::main]
-async fn main() {
-    
-    let app = Router::new()
-       .route("/", get(get_handler))
-       .route("/hello", get(get_handler).post(post_handler).patch(patch_handler).delete(delete_handler));
-
-    let listener = TcpListener::bind("0.0.0.0:8080").await.unwrap();
-    axum::serve(listener, app).await.unwrap();
-}
-```
-
-> **幂等**：一个操作被多次重复执行多次，其结果与第一次执行的结果相同
->
-> 同样的请求被执行一次与**连续执行多次**，对服务器的预期**影响是相同的**，那么称这个 HTTP 方法是**幂等的**，如`PUT`、`DELETE`
->
-> 所有的**安全**方法都是幂等的，如`GET`、`HEAD`、`OPTIONS`
->
-> **安全**：一个 HTTP 方法是`安全`的，是指这是个方法不会修改服务器的数据，即只读的方法，如`GET`、`HEAD`、`OPTIONS`
-
-* **GET（获取资源）**：**请求**资源
-  * GET 请求是安全、幂等的
-* **POST（创建资源）**：通常用于向服务器提交数据以**创建**新的资源
-  * POST 请求是不安全、不幂等的
-  * POST 请求的主体可以包含任意格式的数据，例如表单数据、JSON 或 XML
-* **PUT（更新资源）**：更新服务器上的现有资源，客户端将**完整的资源**表示发送到服务器，服务器用这个表示**替换**现有的资源
-  * PUT请求是不安全、幂等的
-* **PATCH（部分更新资源）**： PATCH 只需要提供**资源的部分**，服务器只更新指定的部分
-  * PATCH请求是不安全、不幂等的
-* **DELETE（删除资源）**：删除指定的资源
-  * DELETE请求是不安全、幂等的
-* **HEAD（获取资源头信息）**：只返回资源的头部信息，不返回资源的主体内容，用于检查资源的存在性、获取资源的大小、最后修改时间等信息，而不需要下载整个资源
-* **OPTIONS（获取服务器支持的方法）**：获取服务器支持的 HTTP 方法和其他选项信息，客户端发送 OPTIONS 请求以了解服务器对特定资源的支持情况
-  * OPTIONS请求的响应通常包含一个`Allow`头部，列出服务器支持的方法
-  * OPTIONS 请求可以用于客户端在发送实际请求之前了解服务器的能力和限制
-
-## 路由匹配
-
-`:`创建**动态路由**，可作为传递的值，必须有值才能匹配到
-
-* `/hello/:id`匹配`/hello/12`
-* `/:id/hello`匹配`/12/hello`
-
-`*`创建**通配符路由**，
-
-* `/hello/*file`匹配`/hello/sssssssfile`
-* **特殊**`/hello/*key`不匹配`/hello/`但会匹配`/hello/`下的所有路由，如`/hello/cci/cci/cci/`
-
-多个参数传递使用`axum::extract::Path`提取
-
-> 路径只包含一个参数时，可以省略元组
-
-```rust
-use axum::{
-    extract::Path,
-    routing::get,
-    Router,
-};
-use tokio::net::TcpListener;
-
-// 获取
-async fn get_handler() -> String {
-    "Hello, world!".to_string()
-}
-async fn show_user(Path((user_id,team_id)):Path<(String,String)>)-> String {
-    format!("{}_{}", user_id, team_id)
-}
-#[tokio::main]
-async fn main() {
-    
-    let app = Router::new()
-       .route("/", get(get_handler))
-       .route("/users/:user_id/team/:team_id", get(show_user));
-        
-    let listener = TcpListener::bind("0.0.0.0:8080").await.unwrap();
-    axum::serve(listener, app).await.unwrap();
-}
-```
-
-## fallback 后备路由
-
-**fallback**：后备，备用方案或回退机制，主要的操作或功能无法正常执行时，程序可以使用预先定义的 fallback来处理情况，以确保程序不会完全失败或崩溃
-
-后背路由仅适用于路由中任何内容均不匹配的路由，创建路由后使用`.fallback()`添加后备路由
-
-> **callback**：区分回调函数
-
-### nest 嵌套路由
-
-将路由嵌套在另一个路由下，例如将用户相关的路由嵌套在`users`下，请求路径必须包含`users`
-
-* 嵌套路由不会看到原始请求 URI，而是会删除匹配的前缀
-* 使用原始URI请使用`axum::extract::OriginalUri`
-* 嵌套路由和通配符路由功能类似，嵌套路由会删除前缀，通配符路由保留完整路由
-
-```rust
-use axum::{
-    extract::Path,
-    routing::{get,post},
-    Router,
-};
-use tokio::net::TcpListener;
-async fn show_user(Path(id): Path<String>) -> String {
-    format!("id: {:?}", id)
-}
-async fn post_user() -> String {
-    "post_user".to_string()
-}
-#[tokio::main]
-async fn main() {
-    let user_routes = Router::new().route("/:id", get(show_user));
-    let team_routes = Router::new().route("/", post(post_user));
-
-    let api_routes = Router::new()
-    .nest("/users", user_routes)// GET /api/users/145632
-    .nest("/teams", team_routes);// POST /api/teams/
-    let app = Router::new().nest("/api", api_routes);
-        
-    let listener = TcpListener::bind("0.0.0.0:8080").await.unwrap();
-    axum::serve(listener, app).await.unwrap();
-}
-```
-
-如果嵌套路由**没有自己的后备**，那么将**继承外部路由的后备**，以下例子
-
-* 当请求`:8080/api/users/145632`时可以匹配成功
-* 当请求`:8080/test`时，由于没有路由可以匹配，会执行`/api`定义的后备
-* 当请求`:8080/api/users/`时，由于没有路由可以匹配，会执行`/users`定义的后备
-* 当请求`:8080/api/users/145632/test`时，由于没有路由可以匹配，`/:id`路由没有定义后备路由，会执行外部的`/users`定义的后备
-
-```rust
-use axum::{
-    http::Uri,
-    extract::OriginalUri,
-    routing::get,
-    Router,
-    http::StatusCode
-};
-use tokio::net::TcpListener;
-async fn show_user(uri: Uri, OriginalUri(original_uri): OriginalUri) -> String {
-    format!("uri: {:?}\noriginal_uri: {:?}\n", uri,original_uri)
-}
-async fn fallback_api() -> (StatusCode, &'static str) {
-    (StatusCode::NOT_FOUND, "Not Found /api")
-}
-async fn fallback_users() -> (StatusCode, &'static str) {
-    (StatusCode::NOT_FOUND, "Not Found /users")
-}
-
-#[tokio::main]
-async fn main() {
-    let user_routes = Router::new().route("/:id", get(show_user));
-
-    let api_routes = Router::new()
-    .nest("/users", user_routes).fallback(fallback_users);
-
-    let app = Router::new().nest("/api", api_routes).fallback(fallback_api);
-        
-    let listener = TcpListener::bind("0.0.0.0:8080").await.unwrap();
-    axum::serve(listener, app).await.unwrap();
-}
-```
-
-## `axum::extract::OriginalUri`
-
-获取原始URI
-
-```rust
-use axum::{
-    http::Uri,
-    extract::OriginalUri,
-    routing::{get,post},
-    Router,
-};
-use tokio::net::TcpListener;
-async fn show_user(uri: Uri, OriginalUri(original_uri): OriginalUri) -> String {
-    //uri: /145632
-    //original_uri: /api/users/145632
-    format!("uri: {:?}\noriginal_uri: {:?}\n", uri,original_uri)
-}
-async fn post_user() -> String {
-    "post_user".to_string()
-}
-#[tokio::main]
-async fn main() {
-    let user_routes = Router::new().route("/:id", get(show_user));
-    let team_routes = Router::new().route("/", post(post_user));
-
-    let api_routes = Router::new()
-    .nest("/users", user_routes)// GET \api\users\145632
-    .nest("/teams", team_routes);// POST \api\teams\
-    let app = Router::new().nest("/api", api_routes);
-        
-    let listener = TcpListener::bind("0.0.0.0:8080").await.unwrap();
-    axum::serve(listener, app).await.unwrap();
-}
-```
-
-### merge 合并路由
-
-将多个独立的路由**组合**到一起统一处理，例如两个模块中定义了路由，在主应用中合并为一个路由
-
-```rust
-use axum::{
-    routing::get,
-    Router,
-    extract::Path,
-};
-use tokio::net::TcpListener;
-async fn users_list() -> String {
-    "users list".to_string()
-}
-async fn users_show(Path(id):Path<String>) -> String {
-    format!("user show: {:?}",id)
-}
-async fn teams_list() -> String {
-    "teams list".to_string()
-}
-#[tokio::main]
-async fn main() {
-
-    let user_routes = Router::new()
-        .route("/users", get(users_list)) // GET :8080/users
-        .route("/users/:id", get(users_show)); // GET :8080/users/145632
-
-    let team_routes = Router::new()
-        .route("/teams", get(teams_list)); // GET :8080/teams
-
-    let app = Router::new()
-        .merge(user_routes)
-        .merge(team_routes);
-
-    let listener = TcpListener::bind("0.0.0.0:8080").await.unwrap();
-    axum::serve(listener, app).await.unwrap();
-}
-```
 
 ## `tower_service::Service`服务路由
 
 用于编写模块化和重复使用的应用，例如`RPC`远程过程调用
 
 * 请求服务时立即返回一个`Future`，代表未来将会完成的任务，此时主线程继续执行，**poll轮询**直到某个时刻处理完成，返回结果或错误
-* 
-
-## 路由函数
-
-
 
 ## Responses响应
 
@@ -828,6 +258,8 @@ cargo install sea-orm-cli
 
 初始化，将会生成`migration`文件夹
 
+> 迁移可以在开发时随时回滚到数据库初始状态，也可以让其他人通过运行命令来初始化一样的开发环境，还可以保留不同版本的数据库设计，随时初始化不同版本的数据库，避免手动导入sql、手动删除开发测试数据
+
 ```bash
 sea-orm-cli migrate init
 ```
@@ -853,20 +285,16 @@ features = [
 ]
 ```
 
-将`crate_table.rs`的`Post`全部改为`User`
-
-添加或修改你需要的字段
+添加或修改你需要的字段，这里定义了一个`Post`表，`id`、`title`、`text`三个字段
 
 ```rust
 #[derive(DeriveIden)]
-enum User {
-    Table,
+enum Post {
+    Table,// 存储表名但不成为数据库字段
     Id,
-    Name,
-    Email,
-    Password,
-    Uuid,
-    CreatedAt,
+    Title,
+    #[sea_orm(iden = "full_text")] // 重命名数据库里的字段名
+    Text,
 }
 ```
 
@@ -875,107 +303,185 @@ enum User {
 > `todo!()`用于提示未完成的部分，使用`todo!()`会panic，迁移前请删除
 
 ```rust
+use sea_orm_migration::{prelude::*, schema::*};
+
+#[derive(DeriveMigrationName)]
+pub struct Migration;
+
+#[async_trait::async_trait]//允许为自定义结构体实现异步MigrationTrait
+impl MigrationTrait for Migration {
     async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
-        // Replace the sample below with your own migration scripts
-        todo!();
 
         manager
             .create_table(
-                Table::create()
-                    .table(User::Table).if_not_exists()
-                    .col(pk_auto(User::Id))
-                    .col(Column::timestamp(User::Name).string().not_null())
-                    .col(Column::string(User::Email).string().unique_key().not_null())
-                    .col(Column::timestamp(User::Password).not_null())
-                    .col(Column::timestamp(User::Uuid).uuid().unique_key().not_null())
-                    .col(Column::timestamp(User::CreatedAt).data_time().not_null())
-                    .to_owned(),
+                Table::create()// 建表
+                    .table(Post::Table)// 表名
+                    .if_not_exists()// 不存在则创建
+                    .col(pk_auto(Post::Id))// 主键自增
+                    .col(string(Post::Title))// string类型的Title
+                    .col(string(Post::Text))// string类型的Text
+                    .to_owned(),// 创建一个拥有所有权的副本
             )
             .await
     }
+
+    async fn down(&self, manager: &SchemaManager) -> Result<(), DbErr> {
+        
+        manager
+            .drop_table(Table::drop().table(Post::Table).to_owned())
+            .await
+    }
+}
+```
+
+> up应用 down回滚
+
+`SeaQuery`其他定义<https://www.sea-ql.org/SeaORM/docs/migration/writing-migration/>
+
+还可以创建多个表
+
+```rust
+use sea_orm_migration::prelude::*;
+#[derive(DeriveMigrationName)]
+pub struct Migration;
+#[async_trait::async_trait]
+impl MigrationTrait for Migration {
+    async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
+        // 创建用户表
+        manager.create_table(
+            Table::create()
+                .table(User::Table)
+                .if_not_exists()
+                .col(ColumnDef::new(User::Id).integer().not_null().auto_increment().primary_key())
+                .col(ColumnDef::new(User::Username).string().not_null())
+                .col(ColumnDef::new(User::Email).string().not_null().unique_key())
+                .to_owned()
+        ).await?;
+        // 创建订单表
+        manager.create_table(
+            Table::create()
+                .table(Order::Table)
+                .if_not_exists()
+                .col(ColumnDef::new(Order::Id).integer().not_null().auto_increment().primary_key())
+                .col(ColumnDef::new(Order::UserId).integer().not_null())
+                .col(ColumnDef::new(Order::TotalPrice).decimal().not_null())
+                .to_owned()
+        ).await?;
+        // 创建产品表
+        manager.create_table(
+            Table::create()
+                .table(Product::Table)
+                .if_not_exists()
+                .col(
+                    ColumnDef::new(Product::Id).integer().not_null().auto_increment().primary_key()
+                )
+                .col(ColumnDef::new(Product::Name).string().not_null())
+                .col(ColumnDef::new(Product::Price).decimal().not_null())
+                .to_owned()
+        ).await?;
+        Ok(())
+    }
+
+    async fn down(&self, manager: &SchemaManager) -> Result<(), DbErr> {
+        // 删除产品表
+        manager.drop_table(Table::drop().table(Product::Table).to_owned()).await?;
+        // 删除订单表
+        manager.drop_table(Table::drop().table(Order::Table).to_owned()).await?;
+        // 删除用户表
+        manager.drop_table(Table::drop().table(User::Table).to_owned()).await?;
+        Ok(())
+    }
+}
+#[derive(DeriveIden)]
+enum User {
+    Table,
+    Id,
+    Username,
+    Email,
+}
+#[derive(DeriveIden)]
+enum Order {
+    Table,
+    Id,
+    UserId,
+    TotalPrice,
+}
+#[derive(DeriveIden)]
+enum Product {
+    Table,
+    Id,
+    Name,
+    Price,
+}
 ```
 
 在根目录创建`.env`文件，添加以下内容，修改`username:password@host`
 
-```
+```.env
 DATABASE_URL=postgres://username:password@host:5432/database
 # 例如
 DATABASE_URL=postgres://postgres:root123456@localhost:5432/postgres
 ```
 
-迁移
+## 运行迁移
+
+迁移将在 Postgres 中以原子方式执行，失败则回滚，MySQL 和 SQLite 不支持原子迁移
+
+* 迁移，除了会创建自定义的表外，还有一个`seaql_migrations`的版本信息表
+
+> 其他目录通过`-d` 来指定`sea-orm-cli migrate COMMAND -d ./other/migration/dir`
+
+```
+sea-orm-cli migrate up
+```
+
+* 回滚
+
+```
+sea-orm-cli migrate down
+```
+
+* 检查迁移的状态
+
+```
+sea-orm-cli migrate status
+```
+
+* 删除**所有表**重新迁移
+
+> 会删除整个数据库的表，不仅仅是迁移定义的表
 
 ```
 sea-orm-cli migrate fresh
 ```
 
-创建实体
+* 回滚所有已应用的迁移，然后重新应用所有迁移
+
+```
+sea-orm-cli migrate refresh
+```
+
+* 回滚所有已应用的迁移
+
+```
+sea-orm-cli migrate reset
+```
+
+## 创建实体
+
+指定在`entity/src`下创建实体
 
 ```
 sea-orm-cli generate entity -o entity/src
 ```
 
+常用参数
 
+* `-o`指定输出目录
 
-## Error handling 错误处理
-
-`axum`基于`tower`服务，该服务通过其关联的错误类型捆绑错误。如果您的服务产生错误并且导致该错误一直传到`hyper`，则连接将在不发送响应的情况下终止。这通常是不可取的，因此`axum`确保您始终通过依赖类型系统来生成响应
-
-`axum`通过要求所有服务将`Infallible`作为其错误类型，`Invalliable`是指永远不会发生的错误的错误类型
-
-## anyhow 处理错误
-
-```rust
-use axum::{
-    http::StatusCode,
-    response::{IntoResponse, Response},
-    routing::get,
-    Router,
-};
-
-#[tokio::main]
-async fn main() {
-    let app = Router::new()
-       .route("/", get(handler));
-
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await.unwrap();
-    println!("->> listening on {}", listener.local_addr().unwrap());
-    axum::serve(listener, app).await.unwrap();
-}
-// 发生错误返回 AppError
-async fn handler() -> Result<(), AppError> {
-    try_thing()?;
-    Ok(())
-}
-// 模拟一个错误
-fn try_thing() -> Result<(), anyhow::Error> {
-    anyhow::bail!("it failed!")
-}
-
-// 编写自定义的错误来包装Error
-struct AppError(anyhow::Error);
-
-// 告诉axum如何将AppError转换为响应体
-impl IntoResponse for AppError {
-    fn into_response(self) -> Response {
-        (
-            StatusCode::INTERNAL_SERVER_ERROR,
-            format!("Something went wrong: {}", self.0),
-        )
-            .into_response()
-    }
-}
-
-// 允许用 ? 处理`Result<_, anyhow::Error>` 减少手动操作
-impl<E> From<E> for AppError
-where
-    E: Into<anyhow::Error>,
-{
-    fn from(err: E) -> Self {
-        Self(err.into())
-    }
-}
-```
+* `--with-serde`序列化与反序列化，指定值`none`、`serialize`、`deserialize`、`both`，默认`none`
+  * `--serde-skip-deserializing-primary-key`生成主键字段标记为的实体模型`#[serde(skip_deserializing)]`
+  * `--serde-skip-hidden-column`：生成带有隐藏列（列名以 开头`_`）字段的实体模型，标记为`#[serde(skip)]`
 
 ## tracing 分布式链路追踪
 
@@ -999,7 +505,7 @@ where
 
 **Spans**：跨度，在特定环境中执行的时间段，当程序进入某一个服务中的上下文执行任务时进入跨度，停止执行时退出跨度；线程当前执行的范围称为当前线程的跨度
 
-**Event**：事件，
+**Event**：事件，某一个时间点发生了什么事
 
 **Collector**：收集器，当`Span`开始/结束或`Event`发生时，他们的记录会被`Collector`收集，`tracing-subscriber`就是一个`Collector`
 
@@ -1009,6 +515,7 @@ where
 tracing = "0.1.40"
 # 日志过滤器
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tower-http = { version = "0.5", features = ["trace"] }
 ```
 
 基本示例
@@ -1035,7 +542,46 @@ async fn main() {
 }
 ```
 
-**#[instrument]**将函数标记为`span`，`tracing `会自动为函数创建一个 `span`，`span `名跟函数名相同
+还可以在路由添加
+
+```rust
+use axum::{ routing::get, Router };
+use tracing::info;
+use tower_http::trace::TraceLayer;
+use tracing_subscriber::{ fmt, layer::SubscriberExt,util::SubscriberInitExt};
+async fn hello()-> String{
+    info!("hello tracing");
+    "hello".to_string()
+}
+
+#[tokio::main]
+async fn main() {
+    // 只有注册 subscriber 后， 才能在控制台上看到日志输出
+    tracing_subscriber::registry().with(fmt::layer()).init();
+
+    let app = Router::new().route("/",get(hello)).layer(TraceLayer::new_for_http());
+
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await.unwrap();
+    // 调用 `tracing` 包的 `info!`
+    info!("🚀 listening on {}", listener.local_addr().unwrap());
+
+
+    axum::serve(listener, app).await.unwrap();
+}
+```
+
+访问`:8080/`可以看到日志
+
+```bash
+2024-09-03T14:31:14.694933Z  INFO auth: 🚀 listening on 0.0.0.0:8080
+2024-09-03T14:31:16.826323Z  INFO hello: auth: hello tracing
+```
+
+还可以在`.env`文件指定级别`RUST_LOG=trace cargo run`
+
+> ERROR、WARN、DEBUG、INFO、TRACE或者1-5，级别从低到高
+
+**#[instrument]**将函数标记为`span`，`tracing`会自动为函数创建一个 `span`，`span`名跟函数名相同
 
 ```rust
 use axum::{ routing::get, Router };
@@ -1059,13 +605,6 @@ async fn main() {
 
     axum::serve(listener, app).await.unwrap();
 }
-```
-
-访问`:8080/`可以看到日志
-
-```bash
-2024-09-03T14:31:14.694933Z  INFO auth: 🚀 listening on 0.0.0.0:8080
-2024-09-03T14:31:16.826323Z  INFO hello: auth: hello tracing
 ```
 
 `tracing::Level`指定跨度的级别
@@ -1104,11 +643,7 @@ async fn hello()-> String{
 
 **in_scope**将不能使用`#[instrument]`的函数或第三方库包裹进`span`
 
-
-
 根目录创建配置文件`.cargo/config.toml`
-
-
 
 ## Middleware 中间件
 
@@ -1122,8 +657,6 @@ axum可以在任何地方添加中间件
 
 `Router::layer`添加的中间件将在路由后运行，不能用于重写URI的中间件，可以使用`Router::route_layer`重写URI
 
-
-
 ### Router::route_layer
 
 ### MethodRouter::layer
@@ -1132,9 +665,9 @@ axum可以在任何地方添加中间件
 
 如连接数据库的状态需要与其他服务共享
 
-- 使用 `State` 提取器
-- 使用请求扩展
-- 使用闭包捕获
+* 使用 `State` 提取器
+* 使用请求扩展
+* 使用闭包捕获
 
 1. 使用 `State` 提取器
 
@@ -1149,8 +682,6 @@ axum可以在任何地方添加中间件
 ## Required dependencies 所需的依赖项
 
 使用`axum`需要引入
-
-
 
 ```
 [dependencies]
@@ -1172,13 +703,13 @@ tower-cookies = "0.10"
 tokio = { version = "1.40.0", features = ["full"] }
 ```
 
-##  `axum::handler` 处理器
+## `axum::handler` 处理器
 
 `handler`是一个异步函数，接受0个或多个`extract`提取器作为参数，并且可以转换为响应的内容
 
 * 注意`handler`是`axum`提供的处理路由，像`list_handler`这种是自定义的处理函数
 
-##  `axum::extract` 提取器
+## `axum::extract` 提取器
 
 从请求中提取数据的类型的`trait`，提取器是实现了`FromRequest`或 `FromRequestParts`的类型
 
@@ -1267,8 +798,20 @@ async fn main() {
 }
 ```
 
-
-
 ## `axum::response`
 
 生成`types`类型和`trait`特征
+
+
+
+
+
+
+## RBAC
+
+RBAC（Role-Based Access Control）：基于角色的访问控制，将权限分配给角色，再将角色分配给用户
+
+* Permission：权限
+* Role：角色
+* Assignment：分配
+* User：用户

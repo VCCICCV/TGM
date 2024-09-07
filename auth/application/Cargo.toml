@@ -5,3 +5,7 @@ edition = "2021"
 
 [dependencies]
 domain ={ path = "../domain"}
+
+anyhow = { workspace = true }
+axum-extra={ workspace = true }
+thiserror= { workspace = true }
