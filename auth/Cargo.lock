@@ -137,9 +137,14 @@ name = "application"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "axum",
  "axum-extra",
  "domain",
+ "infrastructure",
+ "serde",
+ "serde_json",
  "thiserror",
+ "tracing",
 ]
 
 [[package]]
@@ -355,18 +360,10 @@ name = "auth"
 version = "0.1.0"
 dependencies = [
  "application",
- "axum",
  "domain",
- "dotenvy",
  "infrastructure",
  "interface",
  "migration",
- "serde",
- "serde_json",
- "tokio",
- "tower-http",
- "tracing",
- "tracing-subscriber",
 ]
 
 [[package]]
@@ -790,6 +787,11 @@ dependencies = [
 [[package]]
 name = "domain"
 version = "0.1.0"
+dependencies = [
+ "sea-orm",
+ "serde",
+ "tracing",
+]
 
 [[package]]
 name = "dotenvy"
@@ -1346,6 +1348,7 @@ version = "0.1.0"
 dependencies = [
  "axum",
  "sea-orm",
+ "serde",
  "tokio",
  "tracing",
 ]
@@ -1375,6 +1378,7 @@ name = "interface"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "application",
  "axum",
  "dotenvy",
  "infrastructure",

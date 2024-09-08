@@ -2,7 +2,7 @@
  * @Author: cci
  * @Date: 2024-08-25 02:37:22
  * @LastEditors: cci
- * @LastEditTime: 2024-09-07 19:30:18
+ * @LastEditTime: 2024-09-07 23:11:53
  * @Description:
  *
  * Copyright (c) 2024 by TGM All Rights Reserved.
@@ -37,7 +37,7 @@
 
 
 
-use interface;
+use interface::api::auth_api;
 fn main() {
-    interface::main();
+    auth_api::main();
 }

@@ -8,3 +8,4 @@ axum={workspace=true}
 tokio={workspace=true}
 sea-orm={workspace=true}
 tracing={workspace=true}
+serde={workspace=true}

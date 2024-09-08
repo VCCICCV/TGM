@@ -3,15 +3,24 @@
 use sea_orm::entity::prelude::*;
 use serde::{ Deserialize, Serialize };
 
-#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq, Serialize, Deserialize)]
-#[sea_orm(table_name = "user")]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+// #[sea_orm(table_name = "user")]
 pub struct Model {
-    #[sea_orm(primary_key)] pub id: i32,
-    pub username: String,
-    #[sea_orm(unique)] pub email: String,
+    pub id: i32,
+    pub username: String, 
+    pub email: String,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
 pub enum Relation {}
 
-impl ActiveModelBehavior for ActiveModel {}
+// impl ActiveModelBehavior for ActiveModel {}
+
+#[derive(Serialize, Deserialize)]
+pub struct CreateUserModel{
+    // #[sea_orm(primary_key)] 
+    pub id: i32,
+    pub username: String,
+    // #[sea_orm(unique)] 
+    pub email: String,
+}

@@ -21,17 +21,7 @@ infrastructure = { path = "infrastructure" }
 interface = { path = "interface" }
 migration = { path = "migration" }
 
-# 公共依赖
-serde = { workspace = true }
-serde_json = { workspace = true }
-axum = { workspace = true }
-tokio = { workspace = true }
-tower-http = { workspace = true }
-tracing = { workspace = true }
-tracing-subscriber = { workspace = true }
-dotenvy = { workspace = true }
-
-
+# 工作区依赖仅指定版本，serde = { workspace = true }才是真正导入
 [workspace.dependencies]
 domain = { path = "domain" }
 application = { path = "application" }

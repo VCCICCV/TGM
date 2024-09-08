@@ -58,7 +58,7 @@ httpc-test = "0.1.1"
 * `domain`：领域层，包含您的所有实体、值对象和业务逻辑，相关且应一起改变的实体应分组为一个聚合，实体可以利用领域事件将变化传达给系统的其他部分，实体可以定义可用于查询它们的接口（interface，叫约定更合适）,对于可变访问，应该通过 Repository 接口访问实体
   * interface：定义接口
   * **services**：领域服务，实现接口（洋葱架构中叫Domain Model，Domain Services），当业务逻辑不能自然地归属于某个实体时，可以创建领域服务
-  * **entities/model**：领域实体，代表业务领域核心概念的实体类，封装整个系统的关键业务逻辑（能被其他部分复用的实体及业务逻辑），既可以是带有方法的对象，也可以是主句结构和函数集合
+  * **model**：领域实体，代表业务领域核心概念的实体类，封装整个系统的关键业务逻辑（能被其他部分复用的实体及业务逻辑），既可以是带有方法的对象，也可以是主句结构和函数集合
   * value object：不可变的值对象，如地址，值对象可以增强代码的可读性和可维护性，避免在多个地方重复相同的逻辑
   * event：领域事件，如`OrderPlaced`（订单已下单）、`ProductUpdated`（商品已更新）
   * eceptions：错误
@@ -74,6 +74,7 @@ httpc-test = "0.1.1"
     * cache-adapter：对 Redis 的操作进行封装和适配，以满足`application`的需求
     * messaging-adapter：对消息队列的操作进行封装和适配，以满足应用层的需求
 * `infrastructure`：基础设施层，数据库、文件、邮件、事件处理等相关代码，实现`use case`定义的接口，依赖于`domain`存在的接口。用于创建数据库连接工厂类，负责初始化数据库连接池，配置连接参数如数据库地址、用户名、密码，**用于**处理连接异常，如连接超时、连接失败等情况，提供重试机制或错误处理策略，**用于**处理事务管理，确保数据操作的原子性、一致性、隔离性和持久性，**用于**管理系统的运行环境配置，如开发环境、测试环境、生产环境的切换
+  * **entities**：与数据库对应的实体
   * `persistence`：持久层，数据库连接的初始化配置和管理代码，如Java中的DAO
     * mysql_repository_impl：数据库具体实现，使用orm就把连接和实现放一起
     * postgresql_repository_imp：数据库具体实现，使用orm就把连接和实现放一起
@@ -84,7 +85,7 @@ httpc-test = "0.1.1"
   * messaging：实现消息的发送和接收功能
   * file-storage：使用 Minio 的具体文件存储和检索逻辑
   * publisher：发布领域事件
-
+  
 * `Interface`：
   * `api/controller`：路由，如Java中的Controller
 
@@ -170,8 +171,6 @@ serde = { version = "1.0.127", features = ["derive"] }
 # 错误处理
 anyhow = "1.0.86"
 ```
-
-
 
 ## `tower_service::Service`服务路由
 
@@ -801,11 +800,6 @@ async fn main() {
 ## `axum::response`
 
 生成`types`类型和`trait`特征
-
-
-
-
-
 
 ## RBAC
 
