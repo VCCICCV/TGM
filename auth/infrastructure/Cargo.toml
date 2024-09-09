@@ -4,8 +4,12 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+# 不应该直接依赖于 domain（领域层）和 application（应用层），但可以通过抽象接口与它们交互，比如repository
+application={workspace = true}
+
 axum={workspace=true}
 tokio={workspace=true}
 sea-orm={workspace=true}
 tracing={workspace=true}
 serde={workspace=true}
+anyhow = {workspace=true}

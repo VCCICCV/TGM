@@ -4,6 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+# domain不应该依赖于任何层
 sea-orm = { workspace = true }
 serde = { workspace = true }
 tracing = { workspace = true }
+chrono = {workspace = true}

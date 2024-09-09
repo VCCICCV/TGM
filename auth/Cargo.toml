@@ -49,7 +49,7 @@ anyhow = "1.0.86"
 # 自定义错误处理
 thiserror = "1.0.16"
 # 提供了静态文件服务
-tower-http = { version = "0.5", features = ["fs","trace"] }
+tower-http = { version = "0.5", features = ["cors","fs","trace"] }
 # cookie
 tower-cookies = "0.10"
 # 异步运行时
@@ -67,4 +67,7 @@ tracing-error = "0.2.0"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 # 读取env
 dotenvy = "0.15.7"
+mime = "0.3.17"
+
+chrono = "0.4.38"
 [dev-dependencies]

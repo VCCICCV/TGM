@@ -14,5 +14,5 @@ pub mod common{
 
 pub mod service{
     pub mod user_service;
-
+    pub mod user_service_trait;
 }

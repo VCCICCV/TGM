@@ -4,9 +4,12 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+# 依赖于application层uoqu数据和业务逻辑的处理结果
+application = { workspace = true }
+
 axum = { workspace = true }
 tokio = { workspace = true }
-tower-http = { workspace = true }
+tower-http = { workspace = true, features = ["cors"] }
 tracing = { workspace = true }
 tracing-subscriber = { workspace = true }
 dotenvy = { workspace = true }
@@ -14,5 +17,4 @@ anyhow = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
 sea-orm = { workspace = true }
-infrastructure = { workspace = true }
-application = { workspace = true }
+

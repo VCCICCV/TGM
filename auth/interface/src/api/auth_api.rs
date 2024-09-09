@@ -9,13 +9,17 @@ use axum::{
 use sea_orm::DatabaseConnection;
 use serde::{ Deserialize, Serialize };
 use tracing::info;
-use tower_http::trace::TraceLayer;
+use tower_http::{trace::TraceLayer,cors::CorsLayer};
 use tracing_subscriber::{ fmt, layer::SubscriberExt, util::SubscriberInitExt };
 use std::env;
-use application::common::res::ResJson;
+use axum::http::Method;
+use application::common::res::Res;
 use serde_json::json;
-use infrastructure::{ config::db_config::get_db_connection, entities::user };
+use tower_http::cors::Any;
 use application::service::user_service::UserService;
+
+
+
 // 状态路由
 #[derive(Clone, Debug)]
 pub struct AppState {
@@ -47,10 +51,12 @@ pub async fn start() -> anyhow::Result<()> {
     let port = env::var("PORT").expect("PORT is not set in .env file");
     let server_url = format!("{host}:{port}");
 
+    println!("server_url:{}",&server_url);
     // 状态路由
-    let state = AppState {
-        db: get_db_connection().await,
-    };
+    // let state = AppState {
+    //     // db: get_db_connection().await,
+    //     name: String,
+    // };
     //  跨域
     let cors = CorsLayer::new()
         .allow_methods(vec![Method::GET, Method::POST, Method::PUT, Method::DELETE])
@@ -59,10 +65,11 @@ pub async fn start() -> anyhow::Result<()> {
     let app = Router::new()
         .route("/users", get(UserService::get_users_list))
         // .route("/users", post(UserService::create_user))
-        .route("/users/:id", get(UserService::get_user_by_id))
-        .route("/users/:id", put(UserService::update_user))
-        .route("/users/:id", delete(UserService::delete_user))
-        .with_state(state)
+        // .route("/users/:id", get(UserService::get_user_by_id))
+        // .route("/users/:id", put(UserService::update_user))
+        // .route("/users/:id", delete(UserService::delete_user))
+        .fallback(handle_404)
+        // .with_state(state)
         .layer(TraceLayer::new_for_http())
         .layer(cors);
 

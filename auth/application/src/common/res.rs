@@ -1,9 +1,11 @@
+use std::fmt::Debug;
 use axum::{
     body::Body,
     http::{ header, HeaderValue, StatusCode },
     response::{ IntoResponse, Response },
 };
 use serde::{ Deserialize, Serialize };
+
 #[derive(Debug, Serialize)]
 /// 查 数据返回
 pub struct ListData<T> {
@@ -19,7 +21,12 @@ pub struct PageParams {
     pub page_size: Option<u64>,
 }
 
-/// 数据统一返回格式
+
+
+
+
+
+/// 数据统一响应格式
 #[derive(Debug, Serialize, Default)]
 pub struct Res<T> {
     pub code: Option<i32>,
