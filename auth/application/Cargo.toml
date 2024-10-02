@@ -5,12 +5,10 @@ edition = "2021"
 
 [dependencies]
 domain = { workspace = true }
+infrastructure = { workspace = true }
 
 axum = { workspace = true }
 anyhow = { workspace = true }
-axum-extra = { workspace = true }
-thiserror = { workspace = true }
-serde = { workspace = true }
-serde_json = {workspace = true}
-tracing ={ workspace = true  }
-mime = {workspace = true}
+tracing={workspace = true}
+common = {workspace = true}
+tokio = {workspace = true}

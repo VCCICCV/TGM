@@ -1,12 +1,15 @@
 
 
-## TGM（ThreeGorgesMotor，三峡汽车）
+## MGR（motor getting rusty，锈化动力）
 
 ## 项目简介
-`tgm`是一个基于DDD设计整洁架构的web3D购车商城，采用Java17、Spring Cloud 2023 & Alibaba、Spring Boot 3.2.7、Mybatis、OAuth2、Elasticsearch、Containerd、Kubernetes等技术
+
+`MGR`是一个基于DDD整洁架构设计的web3D购车商城，采用Java17、Spring Cloud 2023 & Alibaba、Spring Boot 3.2.7、Mybatis、OAuth2、Elasticsearch、Containerd、Kubernetes等技术
+
 ## tgm-front
 
 过滤生产日期
+
 ## 后台管理
 
 * 首页
@@ -35,6 +38,7 @@
   * 资源列表
 
 ## 数据库
+
 * SKU (Stock Keeping Unit) ：**库存量单位**，是物理上不可分割的最小存货单元，用于库春管理，SKU通常表示：规格、颜色、款式
   * 黑色、500公里续航的电车是一个SKU
   * 银色、800公里续航的电车是一个SKU
@@ -44,8 +48,9 @@
   * 油车是一个SPU
   * 机油是一个SPU
 1. 商品
-  编号，名称，描述，型号，分类，售价，库存，状态
+    编号，名称，描述，型号，分类，售价，库存，状态
 2. 
 3. 订单
 4. 营销
 5. 权限
+

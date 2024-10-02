@@ -1,0 +1,5 @@
+[2m2024-09-29T17:50:13.3206989Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:3964 accepted
+[2m2024-09-29T17:50:13.4547728Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:3964 closed
+[2m2024-09-29T18:10:38.0025878Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-09-29T18:10:38.0029258Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-09-29T18:10:38.0032557Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 0 task(s) to finish

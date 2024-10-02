@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "root123456"
+    volumes:
+      - /var/lib/postgresql/data:/var/lib/postgresql/data
+      - /var/log/postgresql:/var/lib/postgresql/log
+    ports:
+      - 5432:5432
+    networks:
+      - pub-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgAdmin
+    restart: always
+    ports:
+      - 5050:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@domain.com
+      PGADMIN_DEFAULT_PASSWORD: root123456
+    networks:
+      - pub-network
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - /opt/redis/data:/data
+      - /opt/redis/conf/redis.conf:/etc/redis/redis.conf
+    command: redis-server /etc/redis/redis.conf
+    networks:
+      - pub-network
+networks:
+  pub-network:
+    name: pub-network

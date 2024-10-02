@@ -1,0 +1,5 @@
+[2m2024-10-01T21:13:15.5269702Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-10-01T21:13:23.4938278Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:9330 accepted
+[2m2024-10-01T21:13:23.7682089Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-01T21:13:40.6444835Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-01T21:14:06.0682028Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected

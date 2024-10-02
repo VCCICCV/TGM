@@ -1,80 +1,29 @@
-// use axum::{ routing::get, Router, extract::State };
-// use sea_orm::DatabaseConnection;
-// use tracing::info;
-// use tower_http::trace::TraceLayer;
-// use tracing_subscriber::{ fmt, layer::SubscriberExt, util::SubscriberInitExt };
-// use std::env;
-// use application::common::res::ResJson;
-// use serde_json::json;
-// use infrastructure::config::db_connection;
-// // 状态路由
-// #[derive(Clone, Debug)]
-// pub struct AppState {
-//     db: DatabaseConnection,
-// }
-// /// 状态路由， 用于共享状态，需要返回路由时使用
-// // type StateRouter = Router<AppState>;
-// pub fn main() {
-//     let result = start();
-
-//     if let Some(err) = result.err() {
-//         println!("Start Error: {err}");
-//     }
-// }
-// #[tokio::main]
-// pub async fn start() -> anyhow::Result<()> {
-//     // 加载.env 文件，成功返回包含的值，失败返回None
-//     dotenvy::dotenv().ok();
-
-//     // 读取日志级别
-//     let rust_log = env::var("RUST_LOG").unwrap_or("debug".to_string());
-//     env::set_var("RUST_LOG", &rust_log);
-
-//     // 只有注册 subscriber 后， 才能在控制台上看到日志输出
-//     tracing_subscriber::registry().with(fmt::layer()).init();
-
-//     // 读取值
-//     let host = env::var("HOST").expect("HOST is not set in .env file");
-//     let port = env::var("PORT").expect("PORT is not set in .env file");
-//     let server_url = format!("{host}:{port}");
-
-//     // 状态路由
-//     let state = AppState {
-//         db: db_connection().await,
-//     };
-
-//     let app = Router::new()
-//         .route("/auth", get(hello))
-//         // .merge("/post", )
-//         // .merge("/post", )
-//         .with_state(state)
-//         .layer(TraceLayer::new_for_http());
-
-//     let listener = tokio::net::TcpListener::bind(&server_url).await.unwrap();
-//     // 调用 `tracing` 包的 `info!`
-//     info!("🚀 listening on {}", listener.local_addr().unwrap());
-
-//     axum::serve(listener, app).await.unwrap();
-//     Ok(())
-// }
-
-
-// /// handler
-// async fn hello(state: axum::extract::State<AppState>) -> String {
-//     let res_json = ResJson {
-//         code: 200,
-//         data: json!({
-//             "name":"cci",
-//             "age":18,
-//         }).to_string(),
-//         message: "success".to_string(),
-//     };
-//     let json_string = json!(res_json).to_string();
-//     info!("hello tracing");
-//     println!("{:?}", state);
-//     json_string
-// }
-
+//! 应用程序的入口点，用于启动应用程序
+/// 负责与用户的交互，接收用户的请求，调用业务逻辑层的方法，返回响应
+/// 这一层可以不单独拿出来放在application层
 pub mod api{
-    pub mod auth_api;
+    pub mod api;
+}
+/// 为什么要多加一层apapter？有的项目叫trigger（触发器）
+/// CQRS职责分离，这里的目的是为了将业务逻辑和HTTP请求处理解耦，使应用程序的核心逻辑更加清晰，易于测试和维护
+/// 将从业务逻辑层获取的数据转换为适合接口（例如 HTTP 响应）的格式
+/// 只关注如何与外部进行交互，而不涉及具体的业务逻辑的实现细节
+pub mod adapter{
+    pub mod user_handler;
+    pub mod order_handler;
+}
+/// 公共响应，用于封装应用程序的响应数据
+/// 为什么不放在common中？
+/// 我们希望在handler中将应用层和路由解耦，应用层和基础设施层只进行错误处理，响应码和信息在handler统一进行返回
+pub mod common{
+    pub mod response;
+}
+/// 路由
+pub mod routers{
+    pub mod user_routes;
+    pub mod order_routes;
+}
+/// 配置
+pub mod config{
+    pub mod log;
 }

@@ -1,0 +1,33 @@
+[2m2024-09-27T17:39:32.2531841Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-09-27T17:49:16.3389882Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-09-27T17:49:16.3393483Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-09-27T17:49:16.3397177Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 0 task(s) to finish
+[2m2024-09-27T17:49:24.6489826Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-09-27T17:49:34.0399514Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:6974 accepted
+[2m2024-09-27T17:49:34.2196096Z[0m [32m INFO[0m [2minfrastructure::database::connection[0m[2m:[0m Database connected
+[2m2024-09-27T17:49:38.8298295Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-09-27T17:49:38.8301186Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-09-27T17:49:38.830399Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received in task, starting graceful shutdown
+[2m2024-09-27T17:49:38.8310809Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:6974 closed
+[2m2024-09-27T17:49:38.8312963Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 1 task(s) to finish
+[2m2024-09-27T17:50:56.5325127Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-09-27T17:51:07.8109584Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:7447 accepted
+[2m2024-09-27T17:51:07.9828747Z[0m [32m INFO[0m [2minfrastructure::database::connection[0m[2m:[0m Database connected
+[2m2024-09-27T17:51:26.8162713Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-09-27T17:51:26.8166172Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-09-27T17:51:26.8168414Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received in task, starting graceful shutdown
+[2m2024-09-27T17:51:26.8170433Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 1 task(s) to finish
+[2m2024-09-27T17:51:26.8172084Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:7447 closed
+[2m2024-09-27T17:52:13.6100153Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-09-27T17:52:22.1007962Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:7713 accepted
+[2m2024-09-27T17:52:22.2693898Z[0m [32m INFO[0m [2minfrastructure::database::connection[0m[2m:[0m Database connected
+[2m2024-09-27T17:53:27.5521053Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-09-27T17:53:27.5525323Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-09-27T17:53:27.5529097Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received in task, starting graceful shutdown
+[2m2024-09-27T17:53:27.5533288Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 1 task(s) to finish
+[2m2024-09-27T17:53:27.5535844Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:7713 closed
+[2m2024-09-27T17:53:33.4337354Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-09-27T17:54:00.1509265Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-09-27T17:54:00.1512463Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-09-27T17:54:00.1515422Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 0 task(s) to finish
+[2m2024-09-27T22:41:45.0977775Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080

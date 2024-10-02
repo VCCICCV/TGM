@@ -1,0 +1,6 @@
+[2m2024-10-02T01:15:39.5141787Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-10-02T01:15:39.5146921Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-10-02T01:15:39.514876Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 1 task(s) to finish
+[2m2024-10-02T01:15:39.5149457Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received in task, starting graceful shutdown
+[2m2024-10-02T01:15:39.5152205Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:9330 closed
+[2m2024-10-02T01:15:52.1839405Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
