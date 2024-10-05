@@ -9,6 +9,14 @@ pub enum AppError {
     ReqDeleteFail(String),
     #[error("IO error: {0}")]
     IOError(String),
+    #[error("Register error: {0}")]
+    RegisterError(String),
+    #[error("Login error: {0}")]
+    LoginError(String),
+    #[error("Authenticate error: {0}")]
+    AuthenticateError(String),
+    #[error("Refresh token error: {0}")]
+    RefreshTokenError(String),
     #[error("Network error: {0}")]
     NetworkError(String),
     #[error("Other error: {0}")]
@@ -25,12 +33,32 @@ pub enum InfraError {
     IoError(#[from] std::io::Error),
     #[error("User not found")]
     UserNotFound,
+    #[error("Insert error: {0}")]
+    InsertError(String),
     #[error("Email mismatch")]
     EmailMismatch,
+    #[error("Password hash error: {0}")]
+    PasswordHashError(String),
+    #[error("Password verify error: {0}")]
+    PasswordVerifyError(String),
+    #[error("Jwt encode error: {0}")]
+    JwtEncodeError(String),
+    #[error("Jwt decode error: {0}")]
+    JwtDecodeError(String),
+    #[error("Network timeout error: {0}")]
+    NetworkTimeoutError(String),
+    #[error("Network connection error: {0}")]
+    NetworkConnectionError(String),
+    #[error("Config load error: {0}")]
+    ConfigLoadError(String),
+    #[error("Invalid input format error: {0}")]
+    InvalidInputFormatError(String),
+    #[error("Missing required field error: {0}")]
+    MissingRequiredFieldError(String),
     #[error("Other error: {0}")]
     OtherError(String),
 }
-#[derive(Debug,Error)]
+#[derive(Debug, Error)]
 pub enum AuthError {
     #[error("IO error: {0}")]
     WrongCredentials(String),

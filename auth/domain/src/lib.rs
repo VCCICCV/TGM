@@ -1,23 +1,19 @@
 //! 领域层
 pub mod model {
-    pub mod order;
     pub mod user;
+    pub mod dto {
+        pub mod user_dto;
+    }
 }
 /// 高层Domain不应该依赖于低层Infrastructure，而是应该依赖于抽象trait
 pub mod repositories {
-    /// 1、不实现CQRS
-    // pub mod user_repository;
-    /// 2、CQRS，将存储库的操作抽象为命令和查询
-    pub mod command_user_repository;
-    pub mod query_user_repository;
-    // pub mod command_order_repository;
-    // pub mod query_order_repository;
+    pub mod user_repository;
 }
 /// 领域服务（领域能力）：这个领域提供的能力，比如提供了删除的能力，如果要判断有没有权限删除，那就在application编排先鉴权、再删除的用例，
 /// 领域服务是领域层的核心，它应该是无状态的，并且不应该依赖于任何其他领域层的组件，应该通过repository来获取数据
 pub mod service {
-    pub mod command_user_service;
-    pub mod query_user_service;
+    pub mod user_service;
+    pub mod auth_service;
 }
 /// 值对象：没有唯一标识的对象，由其属性的值定义，通常是不可变的
 /// 比如，地址可以作为一个值对象。地址由国家、省份、城市、街道、邮编等属性组成，这些属性的值共同定义了一个地址

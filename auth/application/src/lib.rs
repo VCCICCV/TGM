@@ -12,6 +12,11 @@
 /// 例如创建订单，创建订单需要调用用户服务的接口->调用商品服务的接口->调用订单服务的接口
 // 在这里注入依赖
 pub mod use_case{
+    pub mod login_user_use_case;
+    pub mod register_user_use_case;
+    pub mod get_info_use_case;
+    pub mod logout_user_use_case;
+    pub mod refresh_token_use_case;
     pub mod user_use_case;
 }
 

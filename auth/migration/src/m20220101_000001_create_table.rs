@@ -5,68 +5,164 @@ pub struct Migration;
 impl MigrationTrait for Migration {
     async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
         // 创建用户表
-        manager.create_table(
-            Table::create()
-                .table(User::Table)
-                .if_not_exists()
-                .col(ColumnDef::new(User::Id).integer().not_null().auto_increment().primary_key())
-                .col(ColumnDef::new(User::Username).string().not_null())
-                .col(ColumnDef::new(User::Email).string().not_null().unique_key())
-                .to_owned()
-        ).await?;
-        // 创建订单表
-        manager.create_table(
-            Table::create()
-                .table(Order::Table)
-                .if_not_exists()
-                .col(ColumnDef::new(Order::Id).integer().not_null().auto_increment().primary_key())
-                .col(ColumnDef::new(Order::UserId).integer().not_null())
-                .col(ColumnDef::new(Order::TotalPrice).decimal().not_null())
-                .to_owned()
-        ).await?;
-        // 创建产品表
-        manager.create_table(
-            Table::create()
-                .table(Product::Table)
-                .if_not_exists()
-                .col(
-                    ColumnDef::new(Product::Id).integer().not_null().auto_increment().primary_key()
-                )
-                .col(ColumnDef::new(Product::Name).string().not_null())
-                .col(ColumnDef::new(Product::Price).decimal().not_null())
-                .to_owned()
-        ).await?;
+        manager
+            .create_table(
+                Table::create()
+                    .table(User::Table)
+                    .if_not_exists()
+                    .col(
+                        ColumnDef::new(User::UserId)
+                            .integer()
+                            .not_null()
+                            .auto_increment()
+                            .primary_key(),
+                    )
+                    .col(ColumnDef::new(User::Username).string().not_null())
+                    .col(ColumnDef::new(User::Email).string().not_null().unique_key())
+                    .col(ColumnDef::new(User::Password).string().not_null())
+                    .col(ColumnDef::new(User::Role).integer())
+                    .col(ColumnDef::new(User::CreateTime).date_time().not_null())
+                    .col(ColumnDef::new(User::UpdateTime).date_time())
+                    .to_owned(),
+            )
+            .await?;
+        // 创建角色表
+        manager
+            .create_table(
+                Table::create()
+                    .table(Role::Table)
+                    .if_not_exists()
+                    .col(
+                        ColumnDef::new(Role::RoleId)
+                            .integer()
+                            .not_null()
+                            .primary_key(),
+                    )
+                    .col(ColumnDef::new(Role::RoleName).string().not_null())
+                    .col(ColumnDef::new(Role::RoleDescription).string())
+                    .to_owned(),
+            )
+            .await?;
+        // 创建权限表
+        manager
+            .create_table(
+                Table::create()
+                    .table(Permission::Table)
+                    .if_not_exists()
+                    .col(
+                        ColumnDef::new(Permission::PermissionId)
+                            .integer()
+                            .not_null()
+                            .primary_key(),
+                    )
+                    .col(
+                        ColumnDef::new(Permission::PermissionName)
+                            .string()
+                            .not_null(),
+                    )
+                    .col(ColumnDef::new(Permission::PermissionDescription).string())
+                    .col(
+                        ColumnDef::new(Permission::PermissionType)
+                            .integer()
+                            .not_null(),
+                    )
+                    .to_owned(),
+            )
+            .await?;
+        // 创建用户角色关联表
+        manager
+            .create_table(
+                Table::create()
+                    .table(UserRole::Table)
+                    .if_not_exists()
+                    .col(
+                        ColumnDef::new(UserRole::UserId)
+                            .integer()
+                            .not_null()
+                            .primary_key(),
+                    )
+                    .col(ColumnDef::new(UserRole::RoleId).integer().not_null())
+                    .to_owned(),
+            )
+            .await?;
+        // 创建角色权限关联表
+        manager
+            .create_table(
+                Table::create()
+                    .table(RolePermission::Table)
+                    .if_not_exists()
+                    .col(
+                        ColumnDef::new(RolePermission::RoleId)
+                            .integer()
+                            .not_null()
+                            .primary_key(),
+                    )
+                    .col(
+                        ColumnDef::new(RolePermission::PermissionId)
+                            .integer()
+                            .not_null(),
+                    )
+                    .to_owned(),
+            )
+            .await?;
         Ok(())
     }
 
     async fn down(&self, manager: &SchemaManager) -> Result<(), DbErr> {
-        // 删除产品表
-        manager.drop_table(Table::drop().table(Product::Table).to_owned()).await?;
-        // 删除订单表
-        manager.drop_table(Table::drop().table(Order::Table).to_owned()).await?;
         // 删除用户表
-        manager.drop_table(Table::drop().table(User::Table).to_owned()).await?;
+        manager
+            .drop_table(Table::drop().table(User::Table).to_owned())
+            .await?;
+        // 删除角色表
+        manager
+            .drop_table(Table::drop().table(Role::Table).to_owned())
+            .await?;
+        // 删除权限表
+        manager
+            .drop_table(Table::drop().table(Permission::Table).to_owned())
+            .await?;
+        // 删除用户角色关联表
+        manager
+            .drop_table(Table::drop().table(RolePermission::Table).to_owned())
+            .await?;
         Ok(())
     }
 }
 #[derive(DeriveIden)]
 enum User {
     Table,
-    Id,
+    UserId,
     Username,
     Email,
+    Password,
+    Role,
+    CreateTime,
+    UpdateTime,
 }
 #[derive(DeriveIden)]
-enum Order {
+enum Role {
     Table,
-    Id,
+    RoleId,
+    RoleName,
+    RoleDescription,
+}
+#[derive(DeriveIden)]
+enum Permission {
+    Table,
+    PermissionId,
+    PermissionName,
+    PermissionDescription,
+    PermissionType,
+}
+#[derive(DeriveIden)]
+enum UserRole {
+    Table,
     UserId,
-    TotalPrice,
+    RoleId,
 }
 #[derive(DeriveIden)]
-enum Product {
+enum RolePermission {
     Table,
-    Id,
-    Name,
-    Price,
+    RoleId,
+    PermissionId,
 }

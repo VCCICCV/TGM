@@ -1,27 +1,20 @@
+use crate::{model::user::User, repositories::user_repository::UserRepository};
 use common::error::InfraError;
-use domain::model::user::User;
-// use domain::repositories::command_user_repository::CommandUserRepository;
-// use domain::repositories::query_user_repository::QueryUserRepository;
-use domain::repositories::user_repository::UserRepository;
-use infrastructure::persistence::user_repository_impl::UserRepositoryImpl;
 
-// use crate::event_bus::user_created_event::EventBus;
-/// 如果使用anyhow的话，需要使用`anyhow::Error`类型，而不是`InfraError`类型
-/// ```
-///  use anyhow::Error;
-/// ```
-/// 定义一个UserRepository trait，用于处理用户相关的数据库操作
-/// 封装infrastructure层的具体实现
-pub struct UserService {
-    repository: UserRepositoryImpl,
+pub struct UserService<R>
+where
+    R: UserRepository,
+{
+    repository: R,
 }
 
-impl UserService {
+impl<R> UserService<R>
+where
+    R: UserRepository,
+{
     /// IOC
-    pub fn new() -> Self {
-        Self {
-            repository: UserRepositoryImpl {},
-        }
+    pub fn new(repository: R) -> Self {
+        Self { repository }
     }
 
     pub async fn find_all_users(&self) -> Result<Vec<User>, InfraError> {
@@ -32,11 +25,11 @@ impl UserService {
         self.repository.find_by_id(id).await
     }
 
-    pub async fn create_user(&self, user: User) -> Result<User, InfraError> {
+    pub async fn create_user(&self, user: User) -> Result<bool, InfraError> {
         self.repository.create(user).await
     }
 
-    pub async fn update_user(&self, user: User) -> Result<User, InfraError> {
+    pub async fn update_user(&self, user: User) -> Result<bool, InfraError> {
         self.repository.update(user).await
     }
 

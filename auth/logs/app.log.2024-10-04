@@ -1,0 +1,96 @@
+[2m2024-10-04T02:28:05.7225083Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-10-04T02:29:46.6907768Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:14877 accepted
+[2m2024-10-04T02:31:11.7046057Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-04T02:31:20.649985Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-04T02:31:20.8561691Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-04T02:35:11.8271471Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-04T02:37:48.3928199Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-04T02:41:28.614447Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-10-04T02:41:28.6149555Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-10-04T02:41:28.61527Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received in task, starting graceful shutdown
+[2m2024-10-04T02:41:28.6153742Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 1 task(s) to finish
+[2m2024-10-04T02:41:28.6156498Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:14877 closed
+[2m2024-10-04T02:41:48.044838Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-10-04T02:41:49.6675415Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:6763 accepted
+[2m2024-10-04T02:41:49.6716138Z[0m [35mTRACE[0m [2maxum::rejection[0m[2m:[0m rejecting request [3mstatus[0m[2m=[0m422 [3mbody[0m[2m=[0m"Failed to deserialize the JSON body into the target type: create_time: input contains invalid characters at line 7 column 40" [3mrejection_type[0m[2m=[0m"axum::extract::rejection::JsonDataError"
+[2m2024-10-04T02:42:19.5184596Z[0m [35mTRACE[0m [2maxum::rejection[0m[2m:[0m rejecting request [3mstatus[0m[2m=[0m422 [3mbody[0m[2m=[0m"Failed to deserialize the JSON body into the target type: create_time: input contains invalid characters at line 7 column 40" [3mrejection_type[0m[2m=[0m"axum::extract::rejection::JsonDataError"
+[2m2024-10-04T02:45:40.8966471Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-10-04T02:45:40.8969971Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received in task, starting graceful shutdown
+[2m2024-10-04T02:45:40.8973823Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-10-04T02:45:40.8978311Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 1 task(s) to finish
+[2m2024-10-04T02:45:40.898002Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:6763 closed
+[2m2024-10-04T02:45:52.9658015Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-10-04T02:45:54.4796505Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:8371 accepted
+[2m2024-10-04T02:45:54.4811476Z[0m [35mTRACE[0m [2maxum::rejection[0m[2m:[0m rejecting request [3mstatus[0m[2m=[0m422 [3mbody[0m[2m=[0m"Failed to deserialize the JSON body into the target type: create_time: input contains invalid characters at line 7 column 40" [3mrejection_type[0m[2m=[0m"axum::extract::rejection::JsonDataError"
+[2m2024-10-04T03:05:29.4301258Z[0m [35mTRACE[0m [2maxum::rejection[0m[2m:[0m rejecting request [3mstatus[0m[2m=[0m422 [3mbody[0m[2m=[0m"Failed to deserialize the JSON body into the target type: create_time: input contains invalid characters at line 7 column 40" [3mrejection_type[0m[2m=[0m"axum::extract::rejection::JsonDataError"
+[2m2024-10-04T03:07:25.301626Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-10-04T03:07:25.3020681Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-10-04T03:07:25.3022692Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received in task, starting graceful shutdown
+[2m2024-10-04T03:07:25.3023846Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 1 task(s) to finish
+[2m2024-10-04T03:07:25.3025603Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:8371 closed
+[2m2024-10-04T03:07:39.7228329Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-10-04T03:07:52.74388Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:14247 accepted
+[2m2024-10-04T03:07:52.7463375Z[0m [35mTRACE[0m [2maxum::rejection[0m[2m:[0m rejecting request [3mstatus[0m[2m=[0m422 [3mbody[0m[2m=[0m"Failed to deserialize the JSON body into the target type: create_time: input contains invalid characters at line 7 column 40" [3mrejection_type[0m[2m=[0m"axum::extract::rejection::JsonDataError"
+[2m2024-10-04T03:18:22.7062897Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-10-04T03:18:22.7065914Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-10-04T03:18:22.7067414Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received in task, starting graceful shutdown
+[2m2024-10-04T03:18:22.7071021Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 1 task(s) to finish
+[2m2024-10-04T03:18:22.7073533Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:14247 closed
+[2m2024-10-04T03:18:33.2596386Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-10-04T03:18:35.25219Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:5352 accepted
+[2m2024-10-04T03:18:35.2538833Z[0m [35mTRACE[0m [2maxum::rejection[0m[2m:[0m rejecting request [3mstatus[0m[2m=[0m422 [3mbody[0m[2m=[0m"Failed to deserialize the JSON body into the target type: create_time: input contains invalid characters at line 7 column 40" [3mrejection_type[0m[2m=[0m"axum::extract::rejection::JsonDataError"
+[2m2024-10-04T03:18:38.4313085Z[0m [35mTRACE[0m [2maxum::rejection[0m[2m:[0m rejecting request [3mstatus[0m[2m=[0m422 [3mbody[0m[2m=[0m"Failed to deserialize the JSON body into the target type: create_time: input contains invalid characters at line 7 column 40" [3mrejection_type[0m[2m=[0m"axum::extract::rejection::JsonDataError"
+[2m2024-10-04T03:21:18.4071683Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-04T03:21:18.6006272Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-04T03:21:47.1906706Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-04T03:21:49.0940191Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-04T03:21:50.1749032Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-04T03:21:51.2157099Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-04T03:21:52.3026627Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-04T03:21:55.4862671Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-04T03:22:15.809828Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-04T03:22:22.0733229Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-10-04T03:22:22.0734874Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-10-04T03:22:22.0738843Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received in task, starting graceful shutdown
+[2m2024-10-04T03:22:22.0741644Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 1 task(s) to finish
+[2m2024-10-04T03:22:22.0744452Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:5352 closed
+[2m2024-10-04T03:22:31.7675677Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-10-04T03:22:32.4886005Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:6945 accepted
+[2m2024-10-04T03:22:32.4905026Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-04T03:22:32.6790872Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-04T03:22:48.8061907Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-04T03:26:27.6873684Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-10-04T03:26:27.68778Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-10-04T03:26:27.6879816Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received in task, starting graceful shutdown
+[2m2024-10-04T03:26:27.6880817Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 1 task(s) to finish
+[2m2024-10-04T03:26:27.6882735Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:6945 closed
+[2m2024-10-04T03:27:30.4454598Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-10-04T03:27:34.5386959Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:9096 accepted
+[2m2024-10-04T03:27:34.7267145Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-04T04:34:42.7466525Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-10-04T04:34:42.7469309Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received in task, starting graceful shutdown
+[2m2024-10-04T04:34:42.7470123Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-10-04T04:34:42.7472101Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:9096 closed
+[2m2024-10-04T04:34:42.74743Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 1 task(s) to finish
+[2m2024-10-04T04:34:54.4817715Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-10-04T04:36:43.3691688Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:12511 accepted
+[2m2024-10-04T04:39:03.4453944Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-10-04T04:39:03.4456244Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-10-04T04:39:03.4458291Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received in task, starting graceful shutdown
+[2m2024-10-04T04:39:03.44593Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 1 task(s) to finish
+[2m2024-10-04T04:39:03.4460738Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:12511 closed
+[2m2024-10-04T04:39:49.7692076Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-10-04T04:39:51.6619252Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:13500 accepted
+[2m2024-10-04T04:40:17.6555721Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-04T04:41:01.4538629Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-10-04T04:41:01.454137Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-10-04T04:41:01.4544388Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 0 task(s) to finish
+[2m2024-10-04T05:22:31.9853693Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-10-04T05:22:34.5549245Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:10769 accepted
+[2m2024-10-04T05:22:34.7380987Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-04T05:22:47.3791295Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-04T13:24:37.5824365Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-10-04T13:24:37.5834775Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-10-04T13:24:37.5838173Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 1 task(s) to finish
+[2m2024-10-04T13:24:37.5840485Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received in task, starting graceful shutdown
+[2m2024-10-04T13:24:37.5842927Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:10769 closed

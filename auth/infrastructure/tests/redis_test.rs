@@ -41,6 +41,9 @@ async fn test_redis_util() {
     dotenvy::dotenv().ok();
     let redis_util = RedisUtil::new().await.unwrap();
     redis_util.set("foo", "bar").await.unwrap();
-    let result: Option<String> = Some(redis_util.get("foo").await.unwrap().unwrap());
-    println!("{:?}", result)
+    let result1: Option<String> = Some(redis_util.get("foo").await.unwrap().unwrap());
+    println!("{:?}", result1);
+    // let result2 = redis_util.get("foo").await.unwrap();
+    // println!("{:?}", result2)
+
 }

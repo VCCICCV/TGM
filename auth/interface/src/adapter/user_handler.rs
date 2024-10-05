@@ -2,8 +2,6 @@ use crate::common::response::Res;
 use application::use_case::user_use_case::UserUseCase;
 use axum::response::IntoResponse;
 pub use domain::model::user::User;
-pub use domain::service::command_user_service::CommandUserService;
-pub use domain::service::query_user_service::QueryUserService;
 /// DI：我们把查询用户的trait和命令用户的trait注入到handler中
 pub async fn list_users() -> impl IntoResponse {
     let use_case = UserUseCase::new();

@@ -6,7 +6,13 @@ use axum::{
     response::{ IntoResponse, Response },
 };
 use serde::{ Deserialize, Serialize };
-
+/// 验证响应
+#[derive(Debug, Serialize)]
+pub struct AuthenticationResponse{
+    pub token: String,
+    pub refresh_token: String,
+    pub expires_in: u64,
+}
 #[derive(Debug, Serialize)]
 /// 查 数据返回
 pub struct ListData<T> {

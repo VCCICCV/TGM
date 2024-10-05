@@ -10,7 +10,7 @@ pub mod api{
 /// 只关注如何与外部进行交互，而不涉及具体的业务逻辑的实现细节
 pub mod adapter{
     pub mod user_handler;
-    pub mod order_handler;
+    pub mod auth_handler;
 }
 /// 公共响应，用于封装应用程序的响应数据
 /// 为什么不放在common中？
@@ -21,7 +21,7 @@ pub mod common{
 /// 路由
 pub mod routers{
     pub mod user_routes;
-    pub mod order_routes;
+    pub mod auth_routes;
 }
 /// 配置
 pub mod config{

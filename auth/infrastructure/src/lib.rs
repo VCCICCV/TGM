@@ -18,11 +18,12 @@ pub mod utils{
 // }
 /// 持久层具体实现
 pub mod persistence{
-    // 不实现CQRS
-    // pub mod user_repository_impl;
-    // CQRS，将存储库的操作抽象为命令和查询
-    pub mod command_user_repository_impl;
-    pub mod query_user_repository_impl;
+    pub mod user_repository_impl;
+    pub mod auth_repository_impl;
 }
 // RPC调用
 pub mod remote{}
+// 自定义中间件
+pub mod middleware{
+    pub mod jwt;
+}

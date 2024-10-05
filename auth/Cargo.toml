@@ -12,7 +12,7 @@ interface = { path = "interface" }
 migration = { path = "migration" }
 common = { path = "common" }
 
-axum = "0.7.6"
+axum = "0.7.7"
 axum-extra = "0.9.4"
 sea-orm = { version = "1.0.1", features = [
     "runtime-tokio-native-tls",
@@ -55,6 +55,11 @@ bb8 = "0.8.5"
 bb8-redis = "0.17.0"
 #Media Type
 mime = "0.3.17"
+# JWT
+jsonwebtoken = "9.3.0"
+# 时间处理
+chrono = "0.4.38"
+uuid = {version="1.10.0",features=["v4","serde"]}
 [workspace]
 members = [
     ".",
@@ -70,3 +75,4 @@ members = [
 interface = { workspace = true }
 infrastructure = { workspace = true }
 tokio = { workspace = true }
+
