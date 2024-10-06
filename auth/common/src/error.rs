@@ -33,6 +33,8 @@ pub enum InfraError {
     IoError(#[from] std::io::Error),
     #[error("User not found")]
     UserNotFound,
+    #[error("User create error: {0}")]
+    UserError(String),
     #[error("Insert error: {0}")]
     InsertError(String),
     #[error("Email mismatch")]

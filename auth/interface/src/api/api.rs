@@ -1,15 +1,8 @@
-use axum::{
-    http::{HeaderValue, Method},
-    response::IntoResponse,
-    Router,
-};
+use axum::{ http::{ HeaderValue, Method }, response::IntoResponse, Router };
 use std::env;
 
-use crate::common::response::{EmptyData, Res};
-use crate::{
-    config,
-    routers::{auth_routes::setup_auth_routes, user_routes::setup_user_routes},
-};
+use crate::common::response::{ EmptyData, Res };
+use crate::{ config, routers::user_routes::setup_user_routes };
 use tokio::signal;
 use tower_http::cors::CorsLayer;
 use tracing::info;
@@ -32,8 +25,7 @@ pub async fn start() -> anyhow::Result<()> {
     info!("🚀 listening on {}", &listener.local_addr().unwrap());
     // 启动服务
     axum::serve(listener, app.into_make_service())
-        .with_graceful_shutdown(shutdown_signal())
-        .await
+        .with_graceful_shutdown(shutdown_signal()).await
         .unwrap();
     // 在程序结束前释放资源
     drop(guard);
@@ -43,13 +35,13 @@ pub async fn start() -> anyhow::Result<()> {
 pub async fn setup_routes() -> Router {
     Router::new()
         .nest("/users", setup_user_routes().await)
-        .nest("/auth", setup_auth_routes().await)
+        // .nest("/auth", setup_auth_routes().await)
         //请注意，对于某些请求类型，例如发布content-style：app/json
         //需要添加“.allow_heads（[http：：header：：CONTENT_GROUP]）”
         .layer(
             CorsLayer::new()
                 .allow_origin("http://localhost:3000".parse::<HeaderValue>().unwrap())
-                .allow_methods([Method::GET, Method::POST, Method::PUT, Method::DELETE]),
+                .allow_methods([Method::GET, Method::POST, Method::PUT, Method::DELETE])
         )
 }
 /// 404处理
@@ -59,17 +51,15 @@ async fn handler_404() -> impl IntoResponse {
 /// 优雅关闭
 async fn shutdown_signal() {
     let ctrl_c = async {
-        signal::ctrl_c()
-            .await
-            .expect("failed to install Ctrl+C handler");
+        signal::ctrl_c().await.expect("failed to install Ctrl+C handler");
     };
 
     #[cfg(unix)]
     let terminate = async {
-        signal::unix::signal(signal::unix::SignalKind::terminate())
+        signal::unix
+            ::signal(signal::unix::SignalKind::terminate())
             .expect("failed to install signal handler")
-            .recv()
-            .await;
+            .recv().await;
     };
 
     #[cfg(not(unix))]

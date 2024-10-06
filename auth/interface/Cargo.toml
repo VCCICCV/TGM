@@ -7,6 +7,8 @@ edition = "2021"
 # 依赖于application层uoqu数据和业务逻辑的处理结果
 application = { workspace = true }
 domain = { workspace = true }
+# 依赖于基础设施层的实现
+infrastructure = { workspace = true }
 
 axum = { workspace = true }
 tokio = { workspace = true }

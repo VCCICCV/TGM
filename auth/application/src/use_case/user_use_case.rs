@@ -1,5 +1,5 @@
 use common::error::InfraError;
-use domain::{model::user::User, service::user_service::UserService};
+use domain::{model::{dto::user_dto::RegisterUserDTO, user::User}, service::user_service::UserService};
 use infrastructure::persistence::user_repository_impl::UserRepositoryImpl;
 
 pub struct UserUseCase {
@@ -20,7 +20,7 @@ impl UserUseCase {
         self.user_service.find_user_by_id(id).await
     }
 
-    pub async fn create_user(&self, user: User) -> Result<bool, InfraError> {
+    pub async fn create_user(&self, user: RegisterUserDTO) -> Result<bool, InfraError> {
         self.user_service.create_user(user).await
     }
 
@@ -31,27 +31,6 @@ impl UserUseCase {
     pub async fn delete_user(&self, id: i32) -> Result<bool, InfraError> {
         self.user_service.delete_user(id).await
     }
-    // pub async fn register(&self, user: User) -> Result<String, InfraError> {
-    //     // 先创建用户（假设create_user方法在userUserService中定义且返回Result<(), InfraError>）
-    //     self.user_service.create_user(user.clone()).await?;
-    //     // 再生成JWT
-    //     self.user_service.generate_jwt(user).await
-    // }
-    // pub async fn login(&self, user: User) -> Result<String, InfraError> {
-    //     self.user_service
-    //         .find_user_by_email(user.clone().email)
-    //         .await?;
-    //     self.user_service.generate_jwt(user).await
-    // }
-    // pub async fn authenticate_jwt(&self, user: User) -> Result<User, InfraError> {
-    //     let claims = self.user_service.authenticate(user).await;
-    //     Ok(claims)=>{
-    //         if claims.exp<(chrono::Utc::now().timestamp() as usize) {
-    //             return Err(InfraError::TokenExpired)
-    //         }
-    //         Ok(true)
-    //     }
-    //     Err(_)=>Ok(flase)
-    // }
+
 
 }

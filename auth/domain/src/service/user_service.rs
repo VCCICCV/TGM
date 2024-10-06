@@ -1,4 +1,4 @@
-use crate::{model::user::User, repositories::user_repository::UserRepository};
+use crate::{model::{dto::user_dto::RegisterUserDTO, user::User}, repositories::user_repository::UserRepository};
 use common::error::InfraError;
 
 pub struct UserService<R>
@@ -25,7 +25,7 @@ where
         self.repository.find_by_id(id).await
     }
 
-    pub async fn create_user(&self, user: User) -> Result<bool, InfraError> {
+    pub async fn create_user(&self, user: RegisterUserDTO) -> Result<bool, InfraError> {
         self.repository.create(user).await
     }
 

@@ -1,5 +1,4 @@
-
-use serde::{Deserialize, Serialize};
+use serde::{ Deserialize, Serialize };
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct User {
@@ -9,4 +8,6 @@ pub struct User {
     pub password: String,
     pub role: i32,
     pub create_time: chrono::NaiveDateTime,
+    // 可能是空的
+    pub update_time: Option<chrono::NaiveDateTime>,
 }

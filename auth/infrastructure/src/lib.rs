@@ -1,5 +1,6 @@
 //! 基础设施层
 //! 底层具体技术实现
+// po
 mod entities;
 
 /// 数据库连接
@@ -10,6 +11,8 @@ pub mod database{
 /// 工具类
 pub mod utils{
     pub mod redis_util;
+    pub mod jwt_util;
+    pub mod password_util;
 }
 /// 与表的映射实体
 // pub mod entities{
@@ -23,7 +26,3 @@ pub mod persistence{
 }
 // RPC调用
 pub mod remote{}
-// 自定义中间件
-pub mod middleware{
-    pub mod jwt;
-}

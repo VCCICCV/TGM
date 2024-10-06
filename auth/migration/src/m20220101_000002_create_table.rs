@@ -18,7 +18,10 @@ impl MigrationTrait for Migration {
                             .primary_key(),
                     )
                     .col(ColumnDef::new(Order::UserId).integer().not_null())
+                    .col(ColumnDef::new(Order::ProductId).integer().not_null())
                     .col(ColumnDef::new(Order::TotalPrice).decimal().not_null())
+                    .col(ColumnDef::new(Order::OrderTime).date_time().not_null())
+                    .col(ColumnDef::new(Order::Status).integer().not_null())
                     .to_owned(),
             )
             .await?;
@@ -61,7 +64,10 @@ enum Order {
     Table,
     Id,
     UserId,
+    ProductId,
     TotalPrice,
+    OrderTime,
+    Status,
 }
 #[derive(DeriveIden)]
 enum Product {

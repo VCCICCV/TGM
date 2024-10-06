@@ -1,0 +1,38 @@
+[2m2024-10-05T12:35:34.1242218Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-10-05T12:38:25.4255246Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:7952 accepted
+[2m2024-10-05T12:38:46.6647889Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-10-05T12:38:46.6653538Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-10-05T12:38:46.6656225Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 0 task(s) to finish
+[2m2024-10-05T12:40:53.0728481Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-10-05T12:40:53.7624338Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:10848 accepted
+[2m2024-10-05T12:41:21.3418569Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-10-05T12:41:21.342089Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-10-05T12:41:21.3422838Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 0 task(s) to finish
+[2m2024-10-05T12:41:23.7942134Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-10-05T12:57:09.7402592Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-10-05T12:58:16.0901171Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:5098 accepted
+[2m2024-10-05T12:58:16.350215Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-05T12:58:16.3850885Z[0m [32m INFO[0m [2mapplication::use_case::register_user_use_case[0m[2m:[0m register user: jlbf.ip87@qq.com
+[2m2024-10-05T12:58:17.0270257Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-05T12:59:04.4110262Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-05T12:59:04.413462Z[0m [32m INFO[0m [2mapplication::use_case::register_user_use_case[0m[2m:[0m register user: jlbf.ip87@qq.com
+[2m2024-10-05T12:59:04.9307215Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-05T12:59:19.6346161Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-05T12:59:19.6374379Z[0m [32m INFO[0m [2mapplication::use_case::register_user_use_case[0m[2m:[0m register user: jlbf.i7@qq.com
+[2m2024-10-05T12:59:20.1667055Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-05T13:00:25.8769786Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-05T13:00:25.8791488Z[0m [32m INFO[0m [2mapplication::use_case::register_user_use_case[0m[2m:[0m register user: jlb.i7@qq.com
+[2m2024-10-05T13:00:26.4137485Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-05T13:01:04.2293685Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-05T13:01:04.2319088Z[0m [32m INFO[0m [2mapplication::use_case::register_user_use_case[0m[2m:[0m register user: jlb.i7@qq.com
+[2m2024-10-05T13:01:04.776989Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-05T13:02:22.3894932Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-10-05T13:02:22.3897043Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-10-05T13:02:22.3898182Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received in task, starting graceful shutdown
+[2m2024-10-05T13:02:22.3898989Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 1 task(s) to finish
+[2m2024-10-05T13:02:22.3901077Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:5098 closed
+[2m2024-10-05T13:02:33.6361051Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-10-05T13:02:35.1665555Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:6395 accepted
+[2m2024-10-05T13:02:35.3413181Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-05T13:02:51.4521663Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-05T13:02:52.0124264Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected

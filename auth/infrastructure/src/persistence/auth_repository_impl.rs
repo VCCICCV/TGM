@@ -1,97 +1,85 @@
-use domain::{model::user::User, repositories::user_repository::UserRepository, service::auth_service::AuthService};
+// use argon2::{ Argon2, PasswordHash, PasswordVerifier };
+// use chrono::Utc;
+// use common::error::InfraError;
+// use domain::{
+//     model::{ dto::user_dto::LoginUserSchema, user::User },
+//     repositories::user_repository::UserRepository,
+//     service::auth_service::AuthService,
+// };
+// use crate::middleware::{ self, jwt::encode_jwt };
 
-use super::user_repository_impl::UserRepositoryImpl;
-
-pub struct AuthServiceImpl {
-    user_repository: UserRepositoryImpl,
-    jwt_secret: String,
-    refresh_jwt_secret: String,
-}
-
-impl AuthServiceImpl {
-    pub fn new(user_repository: UserRepositoryImpl, jwt_secret: String,refresh_jwt_secret:String) -> Self {
-        AuthServiceImpl {
-            user_repository,
-            jwt_secret,
-            refresh_jwt_secret,
-        }
-    }
-}
-
-impl AuthService for AuthServiceImpl {
-    async fn register_user(&self, user: &User) -> Result<bool, String> {
-        self.user_repository.create(user.clone()).await;
-        Ok(true)
-    }
-
-    async fn login_user(&self, user: &domain::model::dto::user_dto::LoginUserSchema) -> Result<(String,String), String> {
-        todo!()
-    }
-    
-    async fn logout_user(&self) -> Result<(), String> {
-        todo!()
-    }
-    
-    async fn get_user_by_token(&self, token: &str) -> Result<Option<User>, String> {
-        todo!()
-    }
-    
-    async fn verify_token(&self, token: &str) -> Result<domain::model::dto::user_dto::TokenClaims, String> {
-        todo!()
-    }
-    
-    async fn refresh_token(&self, refresh_token: &str) -> Result<(String, String), String> {
-        todo!()
-    }
-    
-    // async fn login_user(&self, user_schema: &LoginUserSchema) -> Result<String, String> {
-    //     let user = self.user_repository.find_by_email(user_schema.email).await?;
-    //     let user = user.ok_or_else(|| "Invalid email or password".to_string())?;
-    //     let is_valid = match PasswordHash::new(&user.password) {
-    //         Ok(parsed_hash) => Argon2::default()
-    //            .verify_password(user_schema.password.as_bytes(), &parsed_hash)
-    //            .map_or(false, |_| true),
-    //         Err(_) => false,
-    //     };
-    //     if!is_valid {
-    //         return Err("Invalid email or password".to_string());
-    //     }
-    //     let now = Utc::now();
-    //     let iat = now.timestamp() as usize;
-    //     let exp = (now + Duration::minutes(60)).timestamp() as usize;
-    //     let claims = TokenClaims {
-    //         sub: user.id.to_string(),
-    //         exp,
-    //         iat,
-    //     };
-    //     let token = encode(
-    //         &Header::default(),
-    //         &claims,
-    //         &EncodingKey::from_secret(self.jwt_secret.as_ref()),
-    //     )
-    //    .map_err(|e| format!("Error encoding token: {}", e))?;
-    //     Ok(token)
-    // }
-
-    // async fn logout_user(&self) -> Result<(), String> {
-    //     // 在实际应用中，可能需要更多的逻辑来处理注销（如清除缓存中的用户信息等）
-    //     Ok(())
-    // }
-
-    // async fn get_user_by_token(&self, token: &str) -> Result<Option<User>, String> {
-    //     let claims = self.verify_token(token).await?;
-    //     let user_id = Uuid::parse_str(&claims.sub).map_err(|_| "Invalid token".to_string())?;
-    //     self.user_repository.find_user_by_id(user_id).await
-    // }
-
-    // async fn verify_token(&self, token: &str) -> Result<TokenClaims, String> {
-    //     let claims = decode::<TokenClaims>(
-    //         &token,
-    //         &DecodingKey::from_secret(self.jwt_secret.as_ref()),
-    //         &Validation::default(),
-    //     )
-    //    .map_err(|e| format!("Invalid token: {}", e))?
-    //    .claims;
-    //     Ok(claims)
-    // }
-}
+// use super::user_repository_impl::UserRepositoryImpl;
+// pub struct AuthServiceImpl {
+//     user_repository: UserRepositoryImpl,
+// }
+// impl AuthServiceImpl {
+//     pub fn new(user_repository: UserRepositoryImpl) -> Self {
+//         AuthServiceImpl { user_repository }
+//     }
+// }
+// impl AuthService for AuthServiceImpl {
+//     async fn register_user(&self, user: &User) -> Result<String, InfraError> {
+//         // 先查询是否存在
+//         let created = self.user_repository.create(user.clone()).await?;
+//         if created {
+//             // 哈希密码
+//             let hashed_password = middleware::password::hash_password(&user.password).await?;
+//             let new_user = User {
+//                 id: None,
+//                 username: user.username.clone(),
+//                 email: user.email.clone(),
+//                 password: hashed_password,
+//                 role: 0,
+//                 create_time: Utc::now().naive_utc(),
+//             };
+//             // 创建用户
+//             self.user_repository.create(new_user).await?;
+//             // 生成JWT
+//             Ok(encode_jwt(new_user).await)
+//         } else {
+//             Err(InfraError::UserError("User creation failed".to_string()))
+//         }
+//     }
+//     async fn logout_user(&self) -> Result<(), String> {
+//         todo!()
+//     }
+//     async fn login_user(&self, user: &LoginUserSchema) -> Result<String, String> {
+//         // 查找用户
+//         let found_user = self.user_repository.find_by_email(user.email.clone()).await?;
+//         match found_user {
+//             Some(u) => {
+//                 // 验证密码
+//                 if middleware::password::verify_password(&u, &user.password).await? {
+//                     // 生成JWT
+//                     self.user_repository.generate_jwt(u).await
+//                 } else {
+//                     Err("密码错误".to_string())
+//                 }
+//             }
+//             None => Err("用户不存在".to_string()),
+//         }
+//     }
+//     async fn get_user_by_token(&self, token: &str) -> Result<Option<User>, String> {
+//         if middleware::jwt::verify_jwt(token).await? {
+//             // 如果JWT验证通过，可以根据JWT中的信息查找用户（这里简单模拟）
+//             let user = User {
+//                 id: None,
+//                 username: "".to_string(),
+//                 email: "".to_string(),
+//                 password: "".to_string(),
+//                 role: 0,
+//                 create_time: Utc::now().naive_utc(),
+//             };
+//             Ok(Some(user))
+//         } else {
+//             Ok(None)
+//         }
+//     }
+//     async fn verify_token(&self, token: &str) -> Result<bool, String> {
+//         infrastructure::middleware::jwt::verify_jwt(token).await
+//     }
+//     async fn refresh_token(&self, refresh_token: &str) -> Result<String, String> {
+//         // 这里可以添加刷新令牌的逻辑，如验证刷新令牌的有效性，然后重新生成访问令牌
+//         todo!()
+//     }
+// }

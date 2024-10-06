@@ -24,3 +24,5 @@ bb8-redis = {workspace = true}
 jsonwebtoken ={workspace = true}
 chrono ={ workspace = true }
 uuid = {workspace = true}
+password-hash = {workspace = true}
+argon2 ={ workspace = true }
