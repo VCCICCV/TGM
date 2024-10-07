@@ -1,5 +1,43 @@
 use thiserror::Error;
-/// 自定义错误类型
+// 自定义错误类型
+#[derive(Error, Debug)]
+pub enum DomainError {
+    // 1. 实体相关错误
+    #[error("User entity validation error: {0}")]
+    UserEntityValidationError(String),
+    #[error("User not found with ID: {0}")]
+    UserNotFoundError(String),
+    #[error("User already exists with email: {0}")]
+    UserAlreadyExistsError(String),
+    #[error("Invalid user role: {0}")]
+    InvalidUserRoleError(String),
+    // 2. 业务规则相关错误
+    #[error("Insufficient balance for user: {0}")]
+    InsufficientBalanceError(u32),
+    #[error("User is not eligible for this operation")]
+    UserNotEligibleError,
+    #[error("Operation not allowed at this time for user: {0}")]
+    OperationNotAllowedError(u32),
+    // 3. 仓储层相关错误（如果仓储层的错误需要在领域层进行特殊处理）
+    #[error("Database error while saving user: {0}")]
+    DatabaseSaveUserError(String),
+    #[error("Database error while retrieving user: {0}")]
+    DatabaseRetrieveUserError(String),
+    #[error("Database connection error: {0}")]
+    DatabaseConnectionError(String),
+    // 4. 领域服务相关错误
+    #[error("Password verification failed for user: {0}")]
+    PasswordVerificationError(u32),
+    #[error("Token generation failed for user: {0}")]
+    TokenGenerationError(u32),
+    #[error("Token verification failed")]
+    TokenVerificationError,
+    // 5. 与领域内数据一致性相关的错误
+    #[error("Data integrity violation in user profile")]
+    UserProfileDataIntegrityError,
+    #[error("Inconsistent user state: {0}")]
+    InconsistentUserStateException(String),
+}
 #[derive(Error, Debug)]
 pub enum AppError {
     // {0}是应该格式化占位符，使用时将其替换为实际的错误消息。
@@ -60,14 +98,14 @@ pub enum InfraError {
     #[error("Other error: {0}")]
     OtherError(String),
 }
-#[derive(Debug, Error)]
-pub enum AuthError {
-    #[error("IO error: {0}")]
-    WrongCredentials(String),
-    #[error("IO error: {0}")]
-    MissingCredentials(String),
-    #[error("IO error: {0}")]
-    TokenCreation(String),
-    #[error("IO error: {0}")]
-    InvalidToken(String),
-}
+// #[derive(Debug, Error)]
+// pub enum AuthError {
+//     #[error("IO error: {0}")]
+//     WrongCredentials(String),
+//     #[error("IO error: {0}")]
+//     MissingCredentials(String),
+//     #[error("IO error: {0}")]
+//     TokenCreation(String),
+//     #[error("IO error: {0}")]
+//     InvalidToken(String),
+// }

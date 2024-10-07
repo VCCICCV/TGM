@@ -50,3 +50,25 @@
 //         // Ok(jwt_token)
 //     }
 // }
+
+use common::error::AppError;
+use domain::model::dto::user_dto::RegisterUserDTO;
+
+pub struct RegisterUserUseCase<U> {
+    user_repository: U,
+}
+impl RegisterUserUseCase<U> {
+    pub fn new(user_repository: U) -> Self {
+        RegisterUserUseCase { user_repository }
+    }
+    pub async fn execute(&self, register_user_dto: &RegisterUserDTO) -> Result<String, AppError> {
+        // 先查找用户是否存在
+        match self.user_repository.find_by_email(register_user_dto.email.as_str()).await? {
+            Ok(_) => {
+                self.user_repository.save(register_user_dto).await;
+                token = self.auth_repository.generate_jwt(register_user_dto).await;
+            }
+            Err(e) => Err(AppError::RegisterError(e.to_string())),
+        }
+    }
+}

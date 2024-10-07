@@ -10692,3 +10692,37 @@
 [2m2024-10-06T11:00:00.4226833Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received in task, starting graceful shutdown
 [2m2024-10-06T11:00:00.4229445Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 1 task(s) to finish
 [2m2024-10-06T11:00:00.4232104Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:14945 closed
+[2m2024-10-06T12:13:16.380022Z[0m [32m INFO[0m [2minterface::api::api[0m[2m:[0m 🚀 listening on 127.0.0.1:8080
+[2m2024-10-06T12:13:23.8738484Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:9555 accepted
+[2m2024-10-06T12:13:23.8750278Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-06T12:13:24.0516209Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-06T12:13:27.032582Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-06T12:13:29.1802594Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-06T12:14:23.3570288Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-06T12:14:25.0717272Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-06T12:14:25.24873Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-06T12:14:28.6542095Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-06T12:14:28.8128757Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-06T12:15:52.4649258Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-06T12:15:52.6211526Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-06T12:15:54.9772719Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-06T12:15:55.1336365Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-06T12:15:58.7474628Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-06T12:15:58.9084657Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-06T12:16:32.2115499Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-06T12:16:32.3798777Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-06T12:16:54.365422Z[0m [32m INFO[0m [2minfrastructure::persistence::user_repository_impl[0m[2m:[0m find_by_id: 1
+[2m2024-10-06T12:16:54.3657933Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-06T12:16:54.5237359Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-06T12:17:02.1610071Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-06T12:17:03.8660547Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-06T12:17:06.1768498Z[0m [32m INFO[0m [2minfrastructure::persistence::user_repository_impl[0m[2m:[0m find_by_id: 1
+[2m2024-10-06T12:17:06.1775931Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-06T12:23:41.2803504Z[0m [32m INFO[0m [2minfrastructure::persistence::user_repository_impl[0m[2m:[0m find_by_id: 1
+[2m2024-10-06T12:23:41.2806063Z[0m [32m INFO[0m [2minfrastructure::database::redis_connection[0m[2m:[0m Redis connected
+[2m2024-10-06T12:23:41.4519121Z[0m [32m INFO[0m [2minfrastructure::database::db_connection[0m[2m:[0m Database connected
+[2m2024-10-06T13:52:40.3867034Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m received graceful shutdown signal. Telling tasks to shutdown
+[2m2024-10-06T13:52:40.3874286Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received in task, starting graceful shutdown
+[2m2024-10-06T13:52:40.3875339Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m signal received, not accepting new connections
+[2m2024-10-06T13:52:40.3879995Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m waiting for 1 task(s) to finish
+[2m2024-10-06T13:52:40.3881814Z[0m [35mTRACE[0m [2maxum::serve[0m[2m:[0m connection 127.0.0.1:9555 closed

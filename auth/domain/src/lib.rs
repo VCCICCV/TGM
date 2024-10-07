@@ -8,6 +8,7 @@ pub mod model {
 /// 高层Domain不应该依赖于低层Infrastructure，而是应该依赖于抽象trait
 pub mod repositories {
     pub mod user_repository;
+    pub mod auth_repository;
 }
 /// 领域服务（领域能力）：这个领域提供的能力，比如提供了删除的能力，如果要判断有没有权限删除，那就在application编排先鉴权、再删除的用例，
 /// 领域服务是领域层的核心，它应该是无状态的，并且不应该依赖于任何其他领域层的组件，应该通过repository来获取数据
@@ -18,7 +19,9 @@ pub mod service {
 /// 值对象：没有唯一标识的对象，由其属性的值定义，通常是不可变的
 /// 比如，地址可以作为一个值对象。地址由国家、省份、城市、街道、邮编等属性组成，这些属性的值共同定义了一个地址
 /// 如果两个地址的所有属性的值都相同，那么这两个地址就是相等的
-pub mod value_object {}
+pub mod value_object {
+    pub mod order_status;
+}
 
 /// 聚合：聚合是由多个实体和值对象组成的，聚合的根实体负责协调聚合内的实体之间的关系，聚合的根实体是聚合内的唯一标识
 /// 聚合内部的实体和值对象只能通过聚合根进行访问，外部对象只能通过聚合根来操作聚合内部的元素

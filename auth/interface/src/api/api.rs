@@ -1,8 +1,9 @@
 use axum::{ http::{ HeaderValue, Method }, response::IntoResponse, Router };
+use infrastructure::database::db_connection::establish_db_connection;
 use std::env;
 
-use crate::common::response::{ EmptyData, Res };
-use crate::{ config, routers::user_routes::setup_user_routes };
+use crate::{common::response::{ EmptyData, Res }, routers::auth_routes::setup_auth_routes};
+use crate::config ;
 use tokio::signal;
 use tower_http::cors::CorsLayer;
 use tracing::info;
@@ -33,9 +34,10 @@ pub async fn start() -> anyhow::Result<()> {
 }
 /// 嵌套路由
 pub async fn setup_routes() -> Router {
+    
     Router::new()
-        .nest("/users", setup_user_routes().await)
-        // .nest("/auth", setup_auth_routes().await)
+        // .nest("/users", setup_user_routes().await)
+        .nest("/auth", setup_auth_routes().await)
         //请注意，对于某些请求类型，例如发布content-style：app/json
         //需要添加“.allow_heads（[http：：header：：CONTENT_GROUP]）”
         .layer(
